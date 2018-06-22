@@ -4,12 +4,10 @@ package www.mp5a5.com.ueye.base.view.frag
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import com.trello.rxlifecycle2.components.support.RxFragment
@@ -23,7 +21,6 @@ abstract class BaseFragment : RxFragment() {
     private var rightBtnTv: TextView? = null
     private var midTitleTv: TextView? = null
     private var leftBtnTv: TextView? = null
-    private var titleRl: RelativeLayout? = null
     private var viewLineV: View? = null
     private var v: WeakReference<View>? = null
     
@@ -32,6 +29,9 @@ abstract class BaseFragment : RxFragment() {
     
     val leftBtn: TextView?
         get() = if (null != leftBtnTv) leftBtnTv else null
+    
+    val midBtn: TextView?
+        get() = if (null != midTitleTv) midTitleTv else null
     
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -145,7 +145,7 @@ abstract class BaseFragment : RxFragment() {
     }
     
     
-    val thisActivity: AppCompatActivity?
+    val thisActivity: RxAppCompatActivity?
         get() = mContext
     
     val thisContext: Context?

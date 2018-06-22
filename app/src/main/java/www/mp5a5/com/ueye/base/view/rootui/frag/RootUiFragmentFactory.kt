@@ -2,6 +2,7 @@ package www.mp5a5.com.ueye.base.view.rootui.frag
 
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
 import www.mp5a5.com.ueye.base.view.frag.FragmentFactory
+import www.mp5a5.com.ueye.homemodule.HomeFragment
 
 /**
  * @describe

@@ -9,6 +9,7 @@ import io.reactivex.disposables.Disposable
 import org.json.JSONException
 import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
+import www.mp5a5.com.ueye.net.entity.BaseResponseEntity
 import www.mp5a5.com.ueye.util.CustomProgressDialogUtils
 import java.io.InterruptedIOException
 import java.net.ConnectException

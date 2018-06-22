@@ -3,7 +3,6 @@ package www.mp5a5.com.ueye.net.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import www.mp5a5.com.ueye.net.ApiConfig
 import java.io.IOException
 
 /**
@@ -18,7 +17,7 @@ class HttpHeaderInterceptor : Interceptor {
         val originalRequest = chain.request()
         val authorised = originalRequest.newBuilder()
                 .header("Content-type", "application/json")
-                .addHeader("token", ApiConfig.appToken)
+                //.addHeader("token", ApiConfig.appToken)
                 .removeHeader("Pragma").build()
         return chain.proceed(authorised)
     }

@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.net
+package www.mp5a5.com.ueye.net.entity
 
 import java.io.Serializable
 

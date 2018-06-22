@@ -30,7 +30,7 @@ class AppContextUtils {
          * @param context 上下文
          */
         fun init(context: Context) {
-            Companion.context = context.applicationContext
+           this.context = context.applicationContext
         }
         
         /**

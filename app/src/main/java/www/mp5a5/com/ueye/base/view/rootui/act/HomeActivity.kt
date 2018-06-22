@@ -31,9 +31,13 @@ class HomeActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.initView()
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigation)
         setupViewPager(mViewpager)
+        initListener()
+    }
+    
+    private fun initListener() {
         mBottomNavigation.setOnNavigationItemSelectedListener(this)
         mViewpager.addOnPageChangeListener(this)
-        
+    
         //禁止ViewPager滑动
         //mViewpager.setOnTouchListener { v, event -> false }
     }
