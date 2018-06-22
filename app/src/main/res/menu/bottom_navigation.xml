@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_home"
+        android:enabled="true"
+        android:icon="@drawable/home_normal"
+        android:title="@string/tv_home_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_find"
+        android:enabled="true"
+        android:icon="@drawable/find_normal"
+        android:title="@string/tv_find_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_hot"
+        android:enabled="true"
+        android:icon="@drawable/hot_normal"
+        android:title="@string/tv_hot_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_me"
+        android:enabled="true"
+        android:icon="@drawable/mine_normal"
+        android:title="@string/tv_me_name"
+        app:showAsAction="ifRoom" />
+
+</menu>
