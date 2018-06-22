@@ -17,7 +17,6 @@ import www.mp5a5.com.ueye.util.ConstantUtil
 class HomeFragPresenter : BasePresenter<HomeFragContract.View>(), HomeFragContract.Presenter {
     
     override fun requestNetworkFirst(activity: BaseActivity, refresh: Boolean) {
-        v.resetIndex()
         v.unableLoadMore()
         HomeFragService.getHomeFragFirsData()
                 .subscribeOn(Schedulers.io())
@@ -53,7 +52,6 @@ class HomeFragPresenter : BasePresenter<HomeFragContract.View>(), HomeFragContra
     }
     
     override fun requestNetworkNext(activity: BaseActivity, data: String, num: String, refresh: Boolean) {
-        v.addIndex()
         HomeFragService.getHomeFragNextData(data, num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,14 +78,12 @@ class HomeFragPresenter : BasePresenter<HomeFragContract.View>(), HomeFragContra
                         super.onFailing(response)
                         v.showMsg(activity.getString(R.string.no_network))
                         v.loadMoreFail()
-                        v.subIndex()
                     }
                     
                     override fun onError(e: Throwable) {
                         super.onError(e)
                         v.showMsg(activity.getString(R.string.no_network))
                         v.loadMoreFail()
-                        v.subIndex()
                     }
                 })
     }

@@ -15,10 +15,7 @@ interface HomeFragContract {
         
         fun showMsg(msg: String)
         
-        fun isRefresh(refresh: Boolean)
-        
         fun loadMoreEnd(isEnd: Boolean)
-        
         /**
          * 刷新
          */
@@ -28,29 +25,23 @@ interface HomeFragContract {
          * 不刷新
          */
         fun unableRefreshing()
-        
+    
+        /**
+         * 加载完成
+         */
         fun loadMoreComplete()
-        
+        /**
+         * 加载失败
+         */
         fun loadMoreFail()
-        
+        /**
+         * 允许加载
+         */
         fun enableLoadMore()
-        
+        /**
+         * 不允许加载
+         */
         fun unableLoadMore()
-        
-        /**
-         * 索引自增
-         */
-        fun addIndex()
-        
-        /**
-         * 索引自减
-         */
-        fun subIndex()
-        
-        /**
-         * 索引重置
-         */
-        fun resetIndex()
         
         fun <E> addData(list: List<E>)
         

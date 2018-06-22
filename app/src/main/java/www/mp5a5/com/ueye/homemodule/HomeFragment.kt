@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,83 +24,10 @@ import java.util.regex.Pattern
  */
 class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     
-    override fun setData(bean: HomeBean) {
-        val regEx = "[^0-9]"
-        val p = Pattern.compile(regEx)
-        val m = p.matcher(bean?.nextPageUrl)
-        data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
-    }
-    
-    override fun onLoadMoreRequested() {
-        presenter.requestNetworkNext(thisActivity as BaseActivity, data!!, "2", false)
-    }
-    
-    override fun onRefresh() {
-        presenter.requestNetworkFirst(thisActivity as BaseActivity, true)
-    }
-    
-    override fun getBasePresenter(): HomeFragPresenter {
-        return HomeFragPresenter()
-    }
-    
-    override fun showMsg(msg: String) {
-        ToastUtils.show(msg)
-    }
-    
-    override fun isRefresh(refresh: Boolean) {
-    }
-    
-    override fun loadMoreEnd(isEnd: Boolean) {
-        mAdapter!!.loadMoreEnd(isEnd)
-    }
-    
-    override fun enableRefreshing() {
-        mRefreshLayoutRl.isRefreshing = true
-    }
-    
-    override fun unableRefreshing() {
-        mRefreshLayoutRl.isRefreshing = false
-    }
-    
-    override fun loadMoreComplete() {
-        mAdapter!!.loadMoreComplete()
-    }
-    
-    override fun loadMoreFail() {
-        mAdapter!!.loadMoreFail()
-    }
-    
-    override fun enableLoadMore() {
-        mAdapter!!.setEnableLoadMore(true)
-    }
-    
-    override fun unableLoadMore() {
-        mAdapter!!.setEnableLoadMore(false)
-    }
-    
-    override fun addIndex() {
-    
-    }
-    
-    override fun subIndex() {
-    
-    }
-    
-    override fun resetIndex() {
-    
-    }
-    
-    override fun <E> addData(list: List<E>) {
-        mAdapter!!.addData(list as List<HomeBean.IssueListBean.ItemListBean>)
-    }
-    
-    override fun <E> setData(list: List<E>) {
-        mAdapter!!.setNewData(list as List<HomeBean.IssueListBean.ItemListBean>)
-    }
-    
     private lateinit var mContent: String
     private var mAdapter: HomeAdapter? = null
     var data: String? = null
+    var loading = false
     
     companion object {
         fun newInstance(): HomeFragment {
@@ -142,11 +70,90 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         mRecyclerView.adapter = mAdapter
         mRefreshLayoutRl.setOnRefreshListener(this)
         mAdapter!!.setOnLoadMoreListener(this, mRecyclerView)
+        mFloatingActionButtonFab.setOnClickListener { mRecyclerView.smoothScrollToPosition(0) }
+        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+    
+                if (newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    mFloatingActionButtonFab.visibility = View.VISIBLE
+                }else{
+                    mFloatingActionButtonFab.visibility = View.GONE
+                }
+                
+            }
+        })
+        //mRecyclerView.addOnScrollListener(myOnScrollListener())
     }
+    
+ 
     
     override fun initNet() {
         super.initNet()
         presenter.requestNetworkFirst(thisActivity!! as BaseActivity, true)
     }
     
+    override fun onLoadMoreRequested() {
+        presenter.requestNetworkNext(thisActivity as BaseActivity, data!!, "2", false)
+    }
+    
+    override fun onRefresh() {
+        presenter.requestNetworkFirst(thisActivity as BaseActivity, true)
+    }
+    
+    override fun getBasePresenter(): HomeFragPresenter {
+        return HomeFragPresenter()
+    }
+    
+    override fun showMsg(msg: String) {
+        ToastUtils.show(msg)
+    }
+    
+    
+    override fun loadMoreEnd(isEnd: Boolean) {
+        mAdapter!!.loadMoreEnd(isEnd)
+    }
+    
+    override fun enableRefreshing() {
+        mRefreshLayoutRl.isRefreshing = true
+    }
+    
+    override fun unableRefreshing() {
+        mRefreshLayoutRl.isRefreshing = false
+    }
+    
+    override fun loadMoreComplete() {
+        mAdapter!!.loadMoreComplete()
+    }
+    
+    override fun loadMoreFail() {
+        mAdapter!!.loadMoreFail()
+    }
+    
+    override fun enableLoadMore() {
+        mAdapter!!.setEnableLoadMore(true)
+    }
+    
+    override fun unableLoadMore() {
+        mAdapter!!.setEnableLoadMore(false)
+    }
+    
+    override fun <E> addData(list: List<E>) {
+        mAdapter!!.addData(list as List<HomeBean.IssueListBean.ItemListBean>)
+    }
+    
+    override fun <E> setData(list: List<E>) {
+        mAdapter!!.setNewData(list as List<HomeBean.IssueListBean.ItemListBean>)
+    }
+    
+    override fun setData(bean: HomeBean) {
+        val regEx = "[^0-9]"
+        val p = Pattern.compile(regEx)
+        val m = p.matcher(bean?.nextPageUrl)
+        data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
+    }
+    
+
+    
 }
+
