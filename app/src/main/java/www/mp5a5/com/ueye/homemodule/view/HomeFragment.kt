@@ -159,13 +159,13 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
     override fun setData(bean: HomeBean) {
         val regEx = "[^0-9]"
         val p = Pattern.compile(regEx)
-        val m = p.matcher(bean?.nextPageUrl)
+        val m = p.matcher(bean.nextPageUrl)
         data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
     }
     
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         
-        val bean = adapter!!.data.get(position) as HomeBean.IssueListBean.ItemListBean
+        val bean = adapter!!.data[position] as HomeBean.IssueListBean.ItemListBean
         //跳转视频详情页
         val title = bean.data?.title
         val category = bean.data?.category
