@@ -17,7 +17,7 @@ import www.mp5a5.com.ueye.R
  */
 class CustomProgressDialog : Dialog {
     
-    private var mDialogView: View? = null
+    private val mDialogView: View
     private var cancelTouchOutside: Boolean = false
     private var animationDrawable: AnimationDrawable? = null
     
@@ -31,11 +31,12 @@ class CustomProgressDialog : Dialog {
         cancelTouchOutside = builder.cancelTouchOutside
     }
     
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(mDialogView!!)
+        setContentView(mDialogView)
         setCanceledOnTouchOutside(cancelTouchOutside)
     }
+    
     
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         if (mDialogView == null) {
@@ -53,14 +54,10 @@ class CustomProgressDialog : Dialog {
     }
     
     
-     class Builder(internal var context: Context) {
-        internal var resStyle = -1
-        internal val mDialogView: View
+    class Builder(internal var context: Context) {
+        internal val mDialogView: View = LayoutInflater.from(context).inflate(R.layout.dialog_progress, null)
+        private var resStyle = -1
         internal var cancelTouchOutside: Boolean = false
-        
-        init {
-            mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_progress, null)
-        }
         
         /**
          * 设置主题

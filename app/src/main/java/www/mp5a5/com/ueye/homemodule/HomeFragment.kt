@@ -74,19 +74,17 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-    
-                if (newState==RecyclerView.SCROLL_STATE_IDLE) {
+                
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     mFloatingActionButtonFab.visibility = View.VISIBLE
-                }else{
+                } else {
                     mFloatingActionButtonFab.visibility = View.GONE
                 }
                 
             }
         })
-        //mRecyclerView.addOnScrollListener(myOnScrollListener())
     }
     
- 
     
     override fun initNet() {
         super.initNet()
@@ -153,7 +151,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
     }
     
-
     
 }
+
 

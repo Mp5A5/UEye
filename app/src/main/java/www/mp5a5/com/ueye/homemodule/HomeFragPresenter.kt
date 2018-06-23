@@ -22,10 +22,10 @@ class HomeFragPresenter : BasePresenter<HomeFragContract.View>(), HomeFragContra
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(activity.bindToLifecycle())
-                .subscribe(object : BaseObserver<HomeBean>() {
+                .subscribe(object : BaseObserver<HomeBean>(activity) {
                     override fun onSuccess(response: HomeBean) {
                         v.setData(response)
-                        var mList = ArrayList<HomeBean.IssueListBean.ItemListBean>()
+                        val mList = ArrayList<HomeBean.IssueListBean.ItemListBean>()
                         response.issueList!!
                                 .flatMap { it.itemList!! }
                                 .filter { it.type == "video" }
@@ -59,7 +59,7 @@ class HomeFragPresenter : BasePresenter<HomeFragContract.View>(), HomeFragContra
                 .subscribe(object : BaseObserver<HomeBean>() {
                     override fun onSuccess(response: HomeBean) {
                         v.setData(response)
-                        var mList = ArrayList<HomeBean.IssueListBean.ItemListBean>()
+                        val mList = ArrayList<HomeBean.IssueListBean.ItemListBean>()
                         response.issueList!!
                                 .flatMap { it.itemList!! }
                                 .filter { it.type == "video" }

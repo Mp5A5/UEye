@@ -9,7 +9,7 @@ class ConstantUtil {
     
     companion object {
         const val BASE_ULR: String = "http://baobab.kaiyanapp.com/api/"
-        const val SHOW_MAX_PAGE_SIZE = 20
+        const val SHOW_MAX_PAGE_SIZE = 10
     }
     
 }

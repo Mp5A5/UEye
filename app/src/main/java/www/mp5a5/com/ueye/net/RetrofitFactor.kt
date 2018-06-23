@@ -7,11 +7,11 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import www.mp5a5.com.ueye.util.AppContextUtils
 import www.mp5a5.com.kotlinmvp.util.LogUtils
 import www.mp5a5.com.ueye.net.interceptor.HttpCacheInterceptor
 import www.mp5a5.com.ueye.net.interceptor.HttpHeaderInterceptor
 import www.mp5a5.com.ueye.net.interceptor.LoggingInterceptor
+import www.mp5a5.com.ueye.util.AppContextUtils
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -57,8 +57,6 @@ object RetrofitFactor {
                 .build()
         
         val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
-        
-        ApiConfig.appToken
         
         retrofit = Retrofit.Builder()
                 .client(httpClient)

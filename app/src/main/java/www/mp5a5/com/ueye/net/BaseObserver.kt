@@ -1,6 +1,6 @@
 package www.mp5a5.com.ueye.net
 
-import android.app.Activity
+import android.content.Context
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.gson.JsonParseException
@@ -22,9 +22,9 @@ import java.text.ParseException
  * @email：wwb199055@enn.cn
  */
 
-abstract class BaseObserver<T : BaseResponseEntity>() : Observer<T> {
+abstract class BaseObserver<T : BaseResponseEntity> : Observer<T> {
     
-    private var mContext: Activity? = null
+    private var mContext: Context? = null
     private var mShowLoading = false
     private var progressDialogUtils: CustomProgressDialogUtils? = null
     
@@ -33,9 +33,10 @@ abstract class BaseObserver<T : BaseResponseEntity>() : Observer<T> {
      *
      * @param context 上下文
      */
+    constructor()
     
     @Suppress("unused")
-    constructor(context: Activity) : this() {
+    constructor(context: Context) {
         this.mContext = context
         this.mShowLoading = true
     }
@@ -83,7 +84,6 @@ abstract class BaseObserver<T : BaseResponseEntity>() : Observer<T> {
     }
     
     override fun onComplete() {
-        onRequestEnd()
     }
     
     /**

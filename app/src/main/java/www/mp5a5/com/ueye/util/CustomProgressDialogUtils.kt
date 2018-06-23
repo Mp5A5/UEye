@@ -23,7 +23,7 @@ class CustomProgressDialogUtils {
                     .setMessage(msg)
                     .build()
         }
-        if (!mProgressDialog!!.isShowing) {
+        if (mProgressDialog != null && !mProgressDialog!!.isShowing) {
             mProgressDialog!!.show()
         }
     }
@@ -37,7 +37,7 @@ class CustomProgressDialogUtils {
                     .setTheme(R.style.ProgressDialogStyle)
                     .build()
         }
-        if (!mProgressDialog!!.isShowing) {
+        if (mProgressDialog != null && !mProgressDialog!!.isShowing) {
             mProgressDialog!!.show()
         }
     }
