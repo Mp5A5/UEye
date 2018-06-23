@@ -1,10 +1,11 @@
-package www.mp5a5.com.ueye.homemodule
+package www.mp5a5.com.ueye.homemodule.mvp
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.mvp.BasePresenter
 import www.mp5a5.com.ueye.base.view.act.BaseActivity
+import www.mp5a5.com.ueye.homemodule.net.HomeFragService
 import www.mp5a5.com.ueye.net.BaseObserver
 import www.mp5a5.com.ueye.net.entity.HomeBean
 import www.mp5a5.com.ueye.util.ConstantUtil

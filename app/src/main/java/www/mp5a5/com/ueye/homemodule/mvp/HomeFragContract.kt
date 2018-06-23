@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule
+package www.mp5a5.com.ueye.homemodule.mvp
 
 import www.mp5a5.com.ueye.base.mvp.BaseView
 import www.mp5a5.com.ueye.base.view.act.BaseActivity

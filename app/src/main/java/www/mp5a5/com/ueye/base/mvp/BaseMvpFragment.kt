@@ -8,7 +8,7 @@ import www.mp5a5.com.ueye.base.view.frag.BaseFragment
  * @author ：king9999 on 2018/6/21 11：31
  * @email：wwb199055@enn.cn
  */
-abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), BaseView {
+abstract class BaseMvpFragment<P : BasePresenter<out BaseView>> : BaseFragment(), BaseView {
     
     
     protected lateinit var presenter: P

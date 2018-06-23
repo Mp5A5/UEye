@@ -1,9 +1,8 @@
-package www.mp5a5.com.ueye.base.view.rootui.adapter
+package www.mp5a5.com.ueye.base.view.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import www.mp5a5.com.ueye.base.view.rootui.frag.RootUiFragmentFactory
 
 /**
  * @author ：king9999 on 2018/6/19 20：07

@@ -46,7 +46,7 @@ abstract class BaseFragment : RxFragment() {
             iView = inflater.inflate(initLayout(), container, false)
             v = WeakReference(iView!!)
         }
-        val parent = v!!.get()!!.getParent() as? ViewGroup
+        val parent = v!!.get()!!.parent as? ViewGroup
         if (parent != null) {
             parent.removeView(v!!.get()!!)
         }
@@ -71,7 +71,7 @@ abstract class BaseFragment : RxFragment() {
         return ""
     }
     
-    open protected fun setTitle(title: String) {
+    protected open fun setTitle(title: String) {
         if (midTitleTv != null) {
             midTitleTv!!.text = title
         }
@@ -94,29 +94,29 @@ abstract class BaseFragment : RxFragment() {
         initNetWork()
     }
     
-    open protected fun needHeader(): Boolean {
+    protected open fun needHeader(): Boolean {
         return true
     }
     
     protected abstract fun initLayout(): Int
     
-    open protected fun initArgsData() {
+    protected open fun initArgsData() {
     
     }
     
-    open protected fun init() {}
+    protected open fun init() {}
     
-    open protected fun initView() {}
+    protected open fun initView() {}
     
-    open protected fun initNet() {}
+    protected open fun initNet() {}
     
-    open protected fun initAdapter() {}
+    protected open fun initAdapter() {}
     
-    open protected fun initListener() {}
+    protected open fun initListener() {}
     
-    open protected fun initRefresh() {}
+    protected open fun initRefresh() {}
     
-    open protected fun initNetWork() {}
+    protected open fun initNetWork() {}
     
     
     private fun leftBtnClickListener() {
@@ -153,6 +153,15 @@ abstract class BaseFragment : RxFragment() {
     
     fun gotoActivity(clazz: Class<*>) {
         mContext!!.startActivity(Intent(mContext, clazz))
+    }
+    
+    fun gotoActivity(clazz: Class<*>, bundle: Bundle, isFinish: Boolean) {
+        val intent = Intent(mContext, clazz)
+        intent.putExtras(bundle)
+        thisActivity!!.startActivity(intent)
+        if (isFinish) {
+            thisActivity!!.finish()
+        }
     }
     
 }

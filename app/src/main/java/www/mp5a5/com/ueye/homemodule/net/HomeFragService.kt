@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule
+package www.mp5a5.com.ueye.homemodule.net
 
 import io.reactivex.Observable
 import www.mp5a5.com.ueye.net.RetrofitFactor

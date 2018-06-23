@@ -1,8 +1,11 @@
-package www.mp5a5.com.ueye.base.view.rootui.frag
+package www.mp5a5.com.ueye.base.view.adapter
 
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
 import www.mp5a5.com.ueye.base.view.frag.FragmentFactory
-import www.mp5a5.com.ueye.homemodule.HomeFragment
+import www.mp5a5.com.ueye.base.view.rootui.frag.DiscoveryFragment
+import www.mp5a5.com.ueye.base.view.rootui.frag.HotFragment
+import www.mp5a5.com.ueye.base.view.rootui.frag.MineFragment
+import www.mp5a5.com.ueye.homemodule.view.HomeFragment
 
 /**
  * @describe

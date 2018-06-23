@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule
+package www.mp5a5.com.ueye.homemodule.view.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -15,18 +15,18 @@ class HomeAdapter(layoutId: Int = R.layout.item_home) : BaseQuickAdapter<ItemLis
     
     override fun convert(helper: BaseViewHolder?, item: ItemListBean?) {
         
-        var title = item?.data?.title
-        var category = item?.data?.category
-        var minute = item?.data?.duration?.div(60)
-        var second = item?.data?.duration?.minus((minute?.times(60)) as Long)
-        var realMinute: String
-        var realSecond: String
+        val title = item?.data?.title
+        val category = item?.data?.category
+        val minute = item?.data?.duration?.div(60)
+        val second = item?.data?.duration?.minus((minute?.times(60)) as Long)
+        val realMinute: String
+        val realSecond: String
         
         if (minute!! < 10) realMinute = "0" + minute else realMinute = minute.toString()
         if (second!! < 10) realSecond = "0" + second else realSecond = second.toString()
         var playUrl = item?.data?.playUrl
-        var photo = item?.data?.cover?.feed
-        var author = item?.data?.author
+        val photo = item?.data?.cover?.feed
+        val author = item?.data?.author
         
         GlideUtils.display(mContext, helper!!.getView(R.id.iv_home_Photo), photo!!)
         helper.setText(R.id.tv_home_title, title)
@@ -36,5 +36,6 @@ class HomeAdapter(layoutId: Int = R.layout.item_home) : BaseQuickAdapter<ItemLis
         } else {
             helper.setVisible(R.id.iv_home_use, false)
         }
+        helper.addOnClickListener(R.id.cv_home_container)
     }
 }

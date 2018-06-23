@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.base.view.rootui.act
+package www.mp5a5.com.ueye.base.view.act
 
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
@@ -6,8 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_home.*
 import www.mp5a5.com.ueye.R
-import www.mp5a5.com.ueye.base.view.act.BaseActivity
-import www.mp5a5.com.ueye.base.view.rootui.adapter.ViewPagerAdapter
+import www.mp5a5.com.ueye.base.view.adapter.ViewPagerAdapter
 import www.mp5a5.com.ueye.customview.BottomNavigationViewHelper
 
 /**

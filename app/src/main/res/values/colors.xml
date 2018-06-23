@@ -6,6 +6,7 @@
 
     <!--纯色-->
     <color name="white">#FFFFFF</color>
+    <color name="white_50FFFFFF">#50FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
