@@ -89,8 +89,6 @@ class HomeDetailActivity : BaseActivity() {
         }
         imageView = ImageView(this)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        //增加封面
-        //ImageViewAsyncTask(mHandler, this, imageView).execute(bean.feed)
         addCover(imageView)
         mHomeDetailPlayerGsp.titleTextView.visibility = View.GONE
         mHomeDetailPlayerGsp.backButton.visibility = View.VISIBLE
@@ -101,10 +99,10 @@ class HomeDetailActivity : BaseActivity() {
         mHomeDetailPlayerGsp.isLockLand = false
         mHomeDetailPlayerGsp.isShowFullAnimation = false
         mHomeDetailPlayerGsp.isNeedLockFull = true
-        
         playListener()
     }
     
+    //增加封面
     private fun addCover(imageView: ImageView) {
         var mPath: String? = null
         var mInputStream: FileInputStream
@@ -130,7 +128,7 @@ class HomeDetailActivity : BaseActivity() {
                 }
     }
     
-    
+    //视频点击事件
     private fun playListener() {
         mHomeDetailPlayerGsp.fullscreenButton.setOnClickListener {
             //直接横屏
@@ -160,6 +158,10 @@ class HomeDetailActivity : BaseActivity() {
         mHomeDetailPlayerGsp.backButton.setOnClickListener { onBackPressed() }
     }
     
+    override fun initListener() {
+        super.initListener()
+        mHomeDetailVideoDownloadIv.setOnClickListener { }
+    }
     
     override fun onPause() {
         super.onPause()

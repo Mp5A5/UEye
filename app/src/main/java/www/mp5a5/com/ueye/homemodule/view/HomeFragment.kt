@@ -95,7 +95,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
                 
             }
         })
-        mAdapter!!.setOnItemChildClickListener(this)
+        mAdapter!!.onItemChildClickListener = this
     }
     
     override fun initNet() {

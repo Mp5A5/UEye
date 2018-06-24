@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -66,4 +68,6 @@ dependencies {
     implementation 'com.shuyu:GSYVideoPlayer:' + rootProject.gsyVideoVersion
     //FlexboxLayout
     implementation 'com.google.android:flexbox:' + rootProject.flexboxVersion
+    //greenDao
+    implementation 'org.greenrobot:greendao:'+rootProject.greenDaoVersion
 }

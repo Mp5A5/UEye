@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.util.AppContextUtils
@@ -26,7 +25,6 @@ abstract class BaseActivity : RxAppCompatActivity() {
     private var midTitleTv: TextView? = null
     private var leftBtnTv: TextView? = null
     private var viewLineV: View? = null
-    private var mImmersionBar: ImmersionBar? = null
     
     /**
      * 得到右边的按钮
@@ -54,36 +52,31 @@ abstract class BaseActivity : RxAppCompatActivity() {
         initData()
         initView()
         initAdapter()
+        initListener()
         initNet()
     }
     
-    open protected fun initNet() {}
+    protected open fun initNet() {}
     
-    open protected fun initAdapter() {
+    protected open fun initAdapter() {}
     
-    }
+    protected open fun initListener() {}
     
     abstract fun initLayoutView(): View
     
-    open protected fun init() {
+    protected open fun init() {}
     
-    }
+    protected open fun initParams() {}
     
-    open protected fun initParams() {
+    protected open fun initData() {}
     
-    }
-    
-    open protected fun initData() {
-    
-    }
-    
-    open protected fun initStatusBar() {
+    protected open fun initStatusBar() {
         StatusBarUtils.setLightMode(this)
     }
     
-    open protected fun initView() {}
+    protected open fun initView() {}
     
-    open protected fun needHeader(): Boolean {
+    protected open fun needHeader(): Boolean {
         return true
     }
     
@@ -108,7 +101,7 @@ abstract class BaseActivity : RxAppCompatActivity() {
         leftBtnTv!!.setOnClickListener { v -> thisActivity!!.finish() }
     }
     
-    open protected fun setTitle(): String {
+    protected open fun setTitle(): String {
         return ""
     }
     
@@ -160,19 +153,11 @@ abstract class BaseActivity : RxAppCompatActivity() {
     
     protected open fun setImmersive() {
         StatusBarUtils.setColor(thisActivity!!, ContextCompat.getColor(thisActivity!!, R.color.transparent))
-       /* mImmersionBar = ImmersionBar.with(thisActivity!!)
-        mImmersionBar!!.init()*/
     }
     
     override fun onResume() {
         super.onResume()
         thisActivity = this
     }
-    
- /*   override fun onDestroy() {
-        super.onDestroy()
-        if (mImmersionBar != null)
-            mImmersionBar!!.destroy()
-    }*/
     
 }
