@@ -33,7 +33,7 @@ class HomeActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         initListener()
     }
     
-    private fun initListener() {
+    override fun initListener() {
         mBottomNavigation.setOnNavigationItemSelectedListener(this)
         mViewpager.addOnPageChangeListener(this)
     

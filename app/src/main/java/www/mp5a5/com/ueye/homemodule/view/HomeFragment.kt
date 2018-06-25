@@ -167,6 +167,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         
         val bean = adapter!!.data[position] as HomeBean.IssueListBean.ItemListBean
         //跳转视频详情页
+        val id = bean.data?.id
         val title = bean.data?.title
         val category = bean.data?.category
         val photo = bean.data?.cover?.feed
@@ -178,7 +179,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         val share = bean.data?.consumption?.shareCount
         val reply = bean.data?.consumption?.replyCount
         val time = System.currentTimeMillis()
-        val videoBean = VideoBean(photo, title, desc, duration, playUrl, category, blurred, collect, share, reply, time)
+        val videoBean = VideoBean(id!!, photo, title, desc, duration, playUrl, category, blurred, collect, share, reply, time)
         val url = SpUtils.getString(ConstantUtil.HOME_PLAY_URL)
         if (url == "") {
             var count = SpUtils.getInt(ConstantUtil.HOME_COUNT, -1)

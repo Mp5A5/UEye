@@ -22,6 +22,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'www.mp5a5.com.ueye.greenDao.gen'
+        targetGenDir 'src/main/java'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -29,17 +39,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //Kotlin配置
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-
     //Android配置
     implementation 'com.android.support.constraint:constraint-layout:' + rootProject.constraintLayoutVersion
     implementation 'com.android.support:appcompat-v7:' + rootProject.supportLibVersion
     implementation 'com.android.support:design:' + rootProject.supportLibVersion
     implementation 'com.android.support:cardview-v7:' + rootProject.supportLibVersion
     implementation 'com.android.support:recyclerview-v7:' + rootProject.supportLibVersion
-
     //其他配置
     //RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:' + rootProject.rxandroidVersion
@@ -69,5 +76,5 @@ dependencies {
     //FlexboxLayout
     implementation 'com.google.android:flexbox:' + rootProject.flexboxVersion
     //greenDao
-    implementation 'org.greenrobot:greendao:'+rootProject.greenDaoVersion
+    implementation 'org.greenrobot:greendao:' + rootProject.greenDaoVersion
 }
