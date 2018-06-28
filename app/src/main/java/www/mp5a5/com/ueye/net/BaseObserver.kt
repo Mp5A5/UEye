@@ -84,6 +84,7 @@ abstract class BaseObserver<T : BaseResponseEntity> : Observer<T> {
     }
     
     override fun onComplete() {
+        onRequestEnd()
     }
     
     /**
