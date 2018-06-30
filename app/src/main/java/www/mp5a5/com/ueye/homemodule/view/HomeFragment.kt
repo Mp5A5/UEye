@@ -30,7 +30,8 @@ import java.util.regex.Pattern
  * @author ：king9999 on 2018/6/21 18：41
  * @email：wwb199055@enn.cn
  */
-class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
+class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+    
     
     private lateinit var mContent: String
     private var mAdapter: HomeAdapter? = null
@@ -69,6 +70,11 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         mRefreshLayoutRl.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(thisActivity)
+        /*   if (!NetworkUtils.isAvailable) {
+               mFloatingActionButtonFab.visibility = View.GONE
+           } else {
+               mFloatingActionButtonFab.visibility = View.VISIBLE
+           }*/
     }
     
     
@@ -95,7 +101,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
                 
             }
         })
-        mAdapter!!.onItemChildClickListener = this
+        mAdapter!!.onItemClickListener = this
     }
     
     override fun initNet() {
@@ -163,8 +169,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
     }
     
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         val bean = adapter!!.data[position] as HomeBean.IssueListBean.ItemListBean
         //跳转视频详情页
         val id = bean.data?.id
@@ -191,7 +196,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         
         val bundle = Bundle()
         bundle.putParcelable("home_data", videoBean as Parcelable)
-        gotoActivity(HomeDetailActivity::class.java, bundle, false)
+        gotoActivity<HomeDetailActivity>(bundle, false)
     }
 }
 

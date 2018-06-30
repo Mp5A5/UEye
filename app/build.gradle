@@ -77,4 +77,8 @@ dependencies {
     implementation 'com.google.android:flexbox:' + rootProject.flexboxVersion
     //greenDao
     implementation 'org.greenrobot:greendao:' + rootProject.greenDaoVersion
+    //RxDownload
+    compile 'zlc.season:rxdownload3:' + rootProject.rxDownloadVersion
+    //RxPermission
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:' + rootProject.rxPermissionVersion
 }

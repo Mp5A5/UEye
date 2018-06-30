@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/ivIconSplash"
+        android:layout_width="@dimen/size_61dp"
+        android:layout_height="@dimen/size_42dp"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/ic_action_focus_white_no_margin"
+        />
+
+    <TextView
+        android:id="@+id/tvEnglishNameIntro"
+        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ivIconSplash"
+        android:textSize="@dimen/size_25dp"
+        android:text="Eyepetizer"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_below="@id/tvEnglishIntro"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/size_18dp"
+        android:text="开  眼"
+        />
+
+    <TextView
+        android:id="@+id/tvEnglishIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/size_16dp"
+        android:text="Daily appetizers for your eyes，Bon eyepetit"
+        android:layout_above="@+id/tv_intro"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="每日精选视频推介，让你大开眼界。"
+        android:layout_marginBottom="@dimen/size_46dp"
+        android:id="@+id/tv_intro"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package www.mp5a5.com.ueye.base.view.act
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -138,12 +139,13 @@ abstract class BaseActivity : RxAppCompatActivity() {
         }
     }
     
-    fun gotoActivity(clazz: Class<*>) {
-        thisActivity!!.startActivity(Intent(thisActivity, clazz))
+    inline fun <reified T : Activity> gotoActivity() {
+        thisActivity!!.startActivity(Intent(thisActivity, T::class.java))
     }
     
-    fun gotoActivity(clazz: Class<*>, bundle: Bundle, isFinish: Boolean) {
-        val intent = Intent(this, clazz)
+    
+    inline fun <reified T : Activity> gotoActivity(bundle: Bundle, isFinish: Boolean) {
+        val intent = Intent(thisActivity!!, T::class.java)
         intent.putExtras(bundle)
         thisActivity!!.startActivity(intent)
         if (isFinish) {

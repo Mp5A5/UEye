@@ -36,6 +36,5 @@ class HomeAdapter(layoutId: Int = R.layout.item_home) : BaseQuickAdapter<ItemLis
         } else {
             helper.setVisible(R.id.iv_home_use, false)
         }
-        helper.addOnClickListener(R.id.cv_home_container)
     }
 }

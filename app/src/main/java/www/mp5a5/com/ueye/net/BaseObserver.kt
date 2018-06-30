@@ -119,7 +119,6 @@ abstract class BaseObserver<T : BaseResponseEntity> : Observer<T> {
             ExceptionReason.PARSE_ERROR -> ToastUtils.show(R.string.parse_error, Toast.LENGTH_SHORT)
             
             ExceptionReason.UNKNOWN_ERROR -> ToastUtils.show(R.string.unknown_error, Toast.LENGTH_SHORT)
-            else -> ToastUtils.show(R.string.unknown_error, Toast.LENGTH_SHORT)
         }
     }
     

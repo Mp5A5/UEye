@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_100dp"
+    android:id="@+id/rl_me_container"
+    >
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_photo"
+        android:layout_alignParentStart="true"
+        android:padding="@dimen/size_5dp"
+        android:layout_width="@dimen/size_180dp"
+        android:layout_height="match_parent"
+        />
+
+    <RelativeLayout
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/iv_photo"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_toStartOf="@id/iv_download_state"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:padding="@dimen/size_5dp"
+                android:id="@+id/tv_title"
+                android:textSize="@dimen/size_14dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:padding="@dimen/size_5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_detail"
+                android:textSize="@dimen/size_12dp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:paddingEnd="@dimen/size_5dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/iv_download_state"
+            android:layout_width="@dimen/size_30dp"
+            android:layout_height="match_parent"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

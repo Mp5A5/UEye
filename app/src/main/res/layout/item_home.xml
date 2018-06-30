@@ -8,7 +8,6 @@
     app:cardElevation="@dimen/size_5dp"
     app:cardCornerRadius="@dimen/size_5dp"
     android:focusable="true"
-    android:id="@+id/cv_home_container"
     >
 
     <RelativeLayout

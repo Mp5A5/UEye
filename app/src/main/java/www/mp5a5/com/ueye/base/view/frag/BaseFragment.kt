@@ -1,6 +1,7 @@
 package www.mp5a5.com.ueye.base.view.frag
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -151,12 +152,13 @@ abstract class BaseFragment : RxFragment() {
     val thisContext: Context?
         get() = mContext
     
-    fun gotoActivity(clazz: Class<*>) {
-        mContext!!.startActivity(Intent(mContext, clazz))
+    inline fun <reified T : Activity> gotoActivity() {
+        thisActivity!!.startActivity(Intent(thisActivity, T::class.java))
     }
     
-    fun gotoActivity(clazz: Class<*>, bundle: Bundle, isFinish: Boolean) {
-        val intent = Intent(mContext, clazz)
+    
+    inline fun <reified T : Activity> gotoActivity(bundle: Bundle, isFinish: Boolean) {
+        val intent = Intent(thisActivity!!, T::class.java)
         intent.putExtras(bundle)
         thisActivity!!.startActivity(intent)
         if (isFinish) {

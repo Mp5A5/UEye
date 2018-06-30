@@ -1,9 +1,12 @@
 package www.mp5a5.com.ueye.homemodule.view
 
+import android.Manifest
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
@@ -11,19 +14,28 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
+import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableEmitter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home_detail.*
 import www.mp5a5.com.kotlinmvp.util.LogUtils
+import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.act.BaseActivity
+import www.mp5a5.com.ueye.dao.VideoEntityCache
+import www.mp5a5.com.ueye.dao.VideoEntityDaoUtil
+import www.mp5a5.com.ueye.net.entity.CustomMission
 import www.mp5a5.com.ueye.net.entity.VideoBean
+import www.mp5a5.com.ueye.util.CollectionUtils
 import www.mp5a5.com.ueye.util.GlideUtils
 import www.mp5a5.com.ueye.util.StatusBarUtils
 import www.mp5a5.com.ueye.util.VideoListener
+import zlc.season.rxdownload3.RxDownload
+import zlc.season.rxdownload3.helper.dispose
 import java.io.FileInputStream
 
 /**
@@ -38,6 +50,7 @@ class HomeDetailActivity : BaseActivity() {
     private lateinit var orientationUtils: OrientationUtils
     private var isPlay: Boolean = false
     private var isPause: Boolean = false
+    private var disposable: Disposable? = null
     
     override fun initLayoutView(): View {
         return View.inflate(thisActivity, R.layout.activity_home_detail, null)
@@ -160,7 +173,56 @@ class HomeDetailActivity : BaseActivity() {
     
     override fun initListener() {
         super.initListener()
-        mHomeDetailVideoDownloadIv.setOnClickListener { }
+        mHomeDetailVideoDownloadIv.setOnClickListener {
+            val idObservable = videoBean.id.let { VideoEntityDaoUtil.queryForId(thisActivity!!, it) }
+            idObservable.subscribe { idList ->
+                if (CollectionUtils.isEmpty(idList)) {
+                    val entityCache = VideoEntityCache(videoBean.id, videoBean.playUrl, videoBean.toString())
+                    videoBean.id.let { VideoEntityDaoUtil.insertData(thisActivity!!, entityCache) }
+                    downloadVideoPermission()
+                } else {
+                    ToastUtils.show("该视频已经缓存过了！")
+                }
+            }
+            
+        }
+    }
+    
+    //获取6.0权限
+    private fun downloadVideoPermission() {
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(thisActivity!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                val permissions = RxPermissions(thisActivity!!)
+                permissions.requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS)
+                        .subscribe { permission ->
+                            if (permission.granted) {
+                                downloadVideo()
+                            } else if (permission.shouldShowRequestPermissionRationale) {
+                                ToastUtils.show("您拒绝了开启权限，这将影响你的视频下载！")
+                            } else {
+                                ToastUtils.show("您拒绝了开启权限，这将影响你的视频下载！")
+                            }
+                        }
+            } else {
+                downloadVideo()
+            }
+        }
+        
+        
+    }
+    
+    //开始下载
+    private fun downloadVideo() {
+        val mission = CustomMission(videoBean.playUrl!!, videoBean.title!!)
+        disposable = RxDownload.create(mission)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    ToastUtils.show("开始下载！")
+                    RxDownload.start(mission).subscribe()
+                }, {
+                    ToastUtils.show("添加任务失败！")
+                })
     }
     
     override fun onPause() {
@@ -179,6 +241,8 @@ class HomeDetailActivity : BaseActivity() {
         orientationUtils?.let {
             orientationUtils.releaseListener()
         }
+        
+        dispose(disposable)
     }
     
     override fun onBackPressed() {
@@ -207,4 +271,6 @@ class HomeDetailActivity : BaseActivity() {
             }
         }
     }
+    
+    
 }

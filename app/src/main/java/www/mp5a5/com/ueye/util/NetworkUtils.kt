@@ -60,6 +60,16 @@ class NetworkUtils private constructor() {
                 return cm.activeNetworkInfo
             }
         
+        
+        /**
+         * 判断网络是否可用
+         * <p>需添加权限 android.permission.ACCESS_NETWORK_STATE</p>
+         */
+        val isAvailable: Boolean
+            get() {
+                val info = activeNetworkInfo
+                return info != null && info.isAvailable()
+            }
         /**
          * 判断网络是否连接
          *

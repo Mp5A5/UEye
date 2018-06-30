@@ -3,6 +3,7 @@ package www.mp5a5.com.ueye.util
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import www.mp5a5.com.ueye.base.view.act.BaseActivity
 
 /**
  * @describe
@@ -10,6 +11,6 @@ import io.reactivex.schedulers.Schedulers
  * @email：wangwenbinc@enn.cn
  */
 
-fun <T> Observable<T>.switchSchedulers(): Observable<T> {
-    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+fun <T> Observable<T>.switchSchedulers(activity: BaseActivity): Observable<T> {
+    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).compose(activity.bindToLifecycle())
 }

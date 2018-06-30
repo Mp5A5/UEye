@@ -59,4 +59,8 @@ ext {
     immersionBarVersion = "2.3.0"
     //greenDao
     greenDaoVersion = "3.2.2"
+    //RxDownload
+    rxDownloadVersion = "1.2.6"
+    //RxPermission
+    rxPermissionVersion = "0.9.5@aar"
 }

@@ -15,25 +15,24 @@ public class VideoEntityCache {
   @Id
   private int id;
 
-  private int count;
+  //private int count;
 
   private String url;
 
   private String videoBean;
 
-  @Generated(hash = 1199773491)
-  public VideoEntityCache(int id, int count, String url, String videoBean) {
-      this.id = id;
-      this.count = count;
-      this.url = url;
-      this.videoBean = videoBean;
-  }
+  @Generated(hash = 1959170266)
+public VideoEntityCache(int id, String url, String videoBean) {
+    this.id = id;
+    this.url = url;
+    this.videoBean = videoBean;
+}
 
-  @Generated(hash = 1388751497)
-  public VideoEntityCache() {
-  }
+@Generated(hash = 1388751497)
+public VideoEntityCache() {
+}
 
-  public int getId() {
+public int getId() {
       return this.id;
   }
 
@@ -41,13 +40,7 @@ public class VideoEntityCache {
       this.id = id;
   }
 
-  public int getCount() {
-      return this.count;
-  }
 
-  public void setCount(int count) {
-      this.count = count;
-  }
 
   public String getUrl() {
       return this.url;
