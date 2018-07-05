@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import www.mp5a5.com.kotlinmvp.util.LogUtils
+import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.dao.VideoEntityDaoUtil
 import www.mp5a5.com.ueye.net.entity.CustomMission
@@ -23,7 +24,7 @@ import zlc.season.rxdownload3.helper.dispose
  * @author ：king9999 on 2018/6/30 13：46
  * @email：wangwenbinc@enn.cn
  */
-class DownloadAdapter(layoutId: Int = R.layout.item_download) : BaseQuickAdapter<VideoBean, BaseViewHolder>(layoutId) {
+class CacheAdapter(layoutId: Int = R.layout.item_download) : BaseQuickAdapter<VideoBean, BaseViewHolder>(layoutId) {
     
     lateinit var disposable: Disposable
     var isDownload = false
@@ -40,7 +41,9 @@ class DownloadAdapter(layoutId: Int = R.layout.item_download) : BaseQuickAdapter
         var category = item?.category
         var duration = item?.duration
         initDownloadState(item, helper)
-        VideoEntityDaoUtil.queryForId(mContext, item!!.id).subscribe { idList ->
+        
+        
+        VideoEntityDaoUtil.queryForId(item!!.id).let { idList ->
             if (CollectionUtils.isNotEmpty(idList)) {
                 isDownload = false
                 helper.setImageResource(R.id.iv_download_state, R.mipmap.icon_download_stop)
@@ -57,11 +60,24 @@ class DownloadAdapter(layoutId: Int = R.layout.item_download) : BaseQuickAdapter
             } else {
                 isDownload = true
                 helper.setImageResource(R.id.iv_download_state, R.mipmap.icon_download_stop)
+                downloading(item)
             }
         }
         
         helper.addOnLongClickListener(R.id.rl_me_container)
         
+    }
+    
+    private fun downloading(item: VideoBean) {
+        val mission = CustomMission(item.playUrl!!, item.title!!)
+        disposable = RxDownload.create(mission)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    ToastUtils.show("开始下载！")
+                    RxDownload.start(mission).subscribe()
+                }, {
+                    ToastUtils.show("添加任务失败！")
+                })
     }
     
     //初始化下载状态

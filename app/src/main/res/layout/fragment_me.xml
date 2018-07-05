@@ -6,6 +6,7 @@
     >
 
     <FrameLayout
+        android:layout_marginTop="@dimen/size_20dp"
         android:layout_width="match_parent"
         android:alpha="0.5"
         android:layout_height="@dimen/size_120dp"

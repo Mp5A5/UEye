@@ -1,11 +1,8 @@
 package www.mp5a5.com.ueye.dao
 
 import android.content.Context
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import www.mp5a5.com.ueye.greenDao.gen.VideoEntityCacheDao
+import www.mp5a5.com.ueye.util.CollectionUtils
 
 /**
  * @describe
@@ -19,42 +16,33 @@ class VideoEntityDaoUtil private constructor() {
         /**
          * @desc 添加数据至数据库
          **/
-        fun insertData(context: Context, entityCache: VideoEntityCache) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.insert(entityCache)
-            }.subscribeOn(Schedulers.io())
+        fun insertData(entityCache: VideoEntityCache) {
+            KDbManager.daoSession.videoEntityCacheDao.insert(entityCache)
         }
         
         /**
          * @desc 将数据实体通过事务添加至数据库
          **/
-        fun insertData(context: Context, list: List<VideoEntityCache>) {
-            Observable.create<List<VideoEntityCache>> { emitter: ObservableEmitter<List<VideoEntityCache>> ->
-                if (!list.isEmpty()) {
-                    return@create
-                }
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.insertInTx(list)
-            }.subscribeOn(Schedulers.io())
+        fun insertData(list: List<VideoEntityCache>) {
+            if (CollectionUtils.isNotEmpty(list)) {
+                KDbManager.daoSession.videoEntityCacheDao.insertInTx(list)
+            }
         }
         
         /**
          * 添加数据至数据库，如果存在，将原来的数据覆盖
          * 内部代码判断了如果存在就update(entity);不存在就insert(entity)；
          */
-        fun saveData(context: Context, entityCache: VideoEntityCache) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.save(entityCache)
-            }.subscribeOn(Schedulers.io())
+        fun saveData(entityCache: VideoEntityCache) {
+            KDbManager.daoSession.videoEntityCacheDao.save(entityCache)
         }
         
         
         /**
          * @desc 删除数据
          **/
-        fun deleteData(context: Context, entityCache: VideoEntityCache) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.delete(entityCache)
-            }.subscribeOn(Schedulers.io())
+        fun deleteData(entityCache: VideoEntityCache) {
+            KDbManager.daoSession.videoEntityCacheDao.delete(entityCache)
         }
         
         /**
@@ -65,39 +53,29 @@ class VideoEntityDaoUtil private constructor() {
          * @param id      删除具体内容
          */
         
-        fun deleteByKeyData(context: Context, id: Int) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.deleteByKey(id)
-            }.subscribeOn(Schedulers.io())
+        fun deleteByKeyData(id: Int) {
+            KDbManager.daoSession.videoEntityCacheDao.deleteByKey(id)
         }
         
         /**
          * @desc 删除全部数据
          **/
         fun deleteAll(context: Context) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.deleteAll()
-            }.subscribeOn(Schedulers.io())
+            KDbManager.daoSession.videoEntityCacheDao.deleteAll()
         }
         
         /**
          * @desc 更新数据
          **/
-        fun updateData(context: Context, entityCache: VideoEntityCache) {
-            Observable.create<VideoEntityCache> { emitter: ObservableEmitter<VideoEntityCache> ->
-                KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.update(entityCache)
-            }.subscribeOn(Schedulers.io())
+        fun updateData(entityCache: VideoEntityCache) {
+            KDbManager.daoSession.videoEntityCacheDao.update(entityCache)
         }
         
         /**
          * @desc 查询所有数据
          **/
-        fun queryAll(context: Context): Observable<MutableList<VideoEntityCache>> {
-            val observable = Observable.create<MutableList<VideoEntityCache>> { emitter: ObservableEmitter<MutableList<VideoEntityCache>> ->
-                val list = KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.queryBuilder().build().list()
-                emitter.onNext(list)
-            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-            return observable
+        fun queryAll(): MutableList<VideoEntityCache>? {
+            return KDbManager.daoSession.videoEntityCacheDao.queryBuilder().build().list()
         }
         
         /**
@@ -109,12 +87,8 @@ class VideoEntityDaoUtil private constructor() {
          * *
          * @return
          */
-        fun queryForId(context: Context, id: Int): Observable<MutableList<VideoEntityCache>?> {
-            val observable = Observable.create<MutableList<VideoEntityCache>> { emitter: ObservableEmitter<MutableList<VideoEntityCache>> ->
-                val list = KDbManager.getInstance(context)!!.getDaoSession(context)!!.videoEntityCacheDao.queryBuilder().where(VideoEntityCacheDao.Properties.Id.eq(id)).list()
-                emitter.onNext(list)
-            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-            return observable
+        fun queryForId(id: Int): MutableList<VideoEntityCache>? {
+            return KDbManager.daoSession.videoEntityCacheDao.queryBuilder().where(VideoEntityCacheDao.Properties.Id.eq(id)).list()
         }
     }
 }

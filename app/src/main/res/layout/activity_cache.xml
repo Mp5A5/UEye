@@ -6,6 +6,7 @@
     >
 
     <android.support.v7.widget.Toolbar
+        android:layout_marginTop="@dimen/size_20dp"
         android:id="@+id/tMeToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
@@ -15,7 +16,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1dp"
-        android:background="@color/gray_8F9AA8"
+        android:background="@color/gray_DCDCDC"
         />
 
     <FrameLayout

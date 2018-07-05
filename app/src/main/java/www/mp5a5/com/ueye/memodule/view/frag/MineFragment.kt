@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_me.*
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
+import www.mp5a5.com.ueye.memodule.view.act.CacheActivity
 
 /**
  * @describe
@@ -62,7 +63,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
                 //gotoActivity<AdviseActivity>()
             }
             R.id.tv_save -> {
-               // gotoActivity<CacheActivity>()
+                gotoActivity<CacheActivity>()
             }
         }
     }

@@ -37,6 +37,7 @@ import www.mp5a5.com.ueye.util.VideoListener
 import zlc.season.rxdownload3.RxDownload
 import zlc.season.rxdownload3.helper.dispose
 import java.io.FileInputStream
+import java.lang.Exception
 
 /**
  * @describe
@@ -174,15 +175,11 @@ class HomeDetailActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         mHomeDetailVideoDownloadIv.setOnClickListener {
-            val idObservable = videoBean.id.let { VideoEntityDaoUtil.queryForId(thisActivity!!, it) }
-            idObservable.subscribe { idList ->
-                if (CollectionUtils.isEmpty(idList)) {
-                    val entityCache = VideoEntityCache(videoBean.id, videoBean.playUrl, videoBean.toString())
-                    videoBean.id.let { VideoEntityDaoUtil.insertData(thisActivity!!, entityCache) }
-                    downloadVideoPermission()
-                } else {
-                    ToastUtils.show("该视频已经缓存过了！")
-                }
+            val idList = videoBean.id.let { it -> VideoEntityDaoUtil.queryForId(it) }
+            if (CollectionUtils.isEmpty(idList)) {
+                downloadVideoPermission()
+            } else {
+                ToastUtils.show("该视频已经缓存过了！")
             }
             
         }
@@ -214,12 +211,18 @@ class HomeDetailActivity : BaseActivity() {
     
     //开始下载
     private fun downloadVideo() {
+        
+        //创建下载
         val mission = CustomMission(videoBean.playUrl!!, videoBean.title!!)
         disposable = RxDownload.create(mission)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     ToastUtils.show("开始下载！")
-                    RxDownload.start(mission).subscribe()
+                    RxDownload.start(mission).doOnComplete {
+                        //存入数据库
+                        val entityCache = VideoEntityCache(videoBean.id, videoBean.playUrl, videoBean.toString())
+                        videoBean.id.let { VideoEntityDaoUtil.insertData(entityCache) }
+                    }.subscribe()
                 }, {
                     ToastUtils.show("添加任务失败！")
                 })
