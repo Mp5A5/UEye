@@ -15,4 +15,7 @@
     <string name="tv_find_name">发现</string>
     <string name="tv_hot_name">热门</string>
     <string name="tv_me_name">我的</string>
+
+    <!--观看历史-->
+    <string name="tv_watch_history_clear_all_cache">清除全部</string>
 </resources>

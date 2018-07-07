@@ -5,13 +5,27 @@
     android:orientation="vertical"
     >
 
+
     <android.support.v7.widget.Toolbar
         android:layout_marginTop="@dimen/size_20dp"
         android:id="@+id/tMeToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
-        />
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvCacheClearAll"
+            android:gravity="center_vertical"
+            android:text="@string/tv_watch_history_clear_all_cache"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_30dp"
+            android:layout_marginEnd="@dimen/size_20dp"
+            android:layout_gravity="end"
+            />
+    </android.support.v7.widget.Toolbar>
 
     <View
         android:layout_width="match_parent"

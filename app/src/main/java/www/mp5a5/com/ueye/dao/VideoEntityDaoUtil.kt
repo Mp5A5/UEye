@@ -1,6 +1,5 @@
 package www.mp5a5.com.ueye.dao
 
-import android.content.Context
 import www.mp5a5.com.ueye.greenDao.gen.VideoEntityCacheDao
 import www.mp5a5.com.ueye.util.CollectionUtils
 
@@ -53,14 +52,15 @@ class VideoEntityDaoUtil private constructor() {
          * @param id      删除具体内容
          */
         
-        fun deleteByKeyData(id: Int) {
+        fun deleteByKeyData(id: Long) {
             KDbManager.daoSession.videoEntityCacheDao.deleteByKey(id)
         }
+        
         
         /**
          * @desc 删除全部数据
          **/
-        fun deleteAll(context: Context) {
+        fun deleteAll() {
             KDbManager.daoSession.videoEntityCacheDao.deleteAll()
         }
         
@@ -88,7 +88,7 @@ class VideoEntityDaoUtil private constructor() {
          * @return
          */
         fun queryForId(id: Int): MutableList<VideoEntityCache>? {
-            return KDbManager.daoSession.videoEntityCacheDao.queryBuilder().where(VideoEntityCacheDao.Properties.Id.eq(id)).list()
+            return KDbManager.daoSession.videoEntityCacheDao.queryBuilder().where(VideoEntityCacheDao.Properties.PalyerId.eq(id)).list()
         }
     }
 }

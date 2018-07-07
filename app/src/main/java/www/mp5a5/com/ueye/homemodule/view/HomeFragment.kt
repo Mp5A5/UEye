@@ -19,10 +19,7 @@ import www.mp5a5.com.ueye.homemodule.mvp.HomeFragPresenter
 import www.mp5a5.com.ueye.homemodule.view.adapter.HomeAdapter
 import www.mp5a5.com.ueye.net.entity.HomeBean
 import www.mp5a5.com.ueye.net.entity.VideoBean
-import www.mp5a5.com.ueye.util.ConstantUtil
 import www.mp5a5.com.ueye.util.DateUtil
-import www.mp5a5.com.ueye.util.ObjectSaveUtils
-import www.mp5a5.com.ueye.util.SpUtils
 import java.util.regex.Pattern
 
 /**
@@ -70,11 +67,6 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         mRefreshLayoutRl.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(thisActivity)
-        /*   if (!NetworkUtils.isAvailable) {
-               mFloatingActionButtonFab.visibility = View.GONE
-           } else {
-               mFloatingActionButtonFab.visibility = View.VISIBLE
-           }*/
     }
     
     
@@ -185,15 +177,14 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
         val reply = bean.data?.consumption?.replyCount
         val time = System.currentTimeMillis()
         val videoBean = VideoBean(id!!, photo, title, desc, duration, playUrl, category, blurred, collect, share, reply, time)
-        val url = SpUtils.getString(ConstantUtil.HOME_PLAY_URL)
+        /*val url = SpUtils.getString(ConstantUtil.HOME_PLAY_URL)
         if (url == "") {
             var count = SpUtils.getInt(ConstantUtil.HOME_COUNT, -1)
             count = if (count != -1) count.inc() else 1
             SpUtils.setInt(ConstantUtil.HOME_COUNT, count)
             SpUtils.setString(ConstantUtil.HOME_PLAY_URL, playUrl!!)
             ObjectSaveUtils.saveObject(thisContext!!, "bean$count", videoBean)
-        }
-        
+        }*/
         val bundle = Bundle()
         bundle.putParcelable("home_data", videoBean as Parcelable)
         gotoActivity<HomeDetailActivity>(bundle, false)

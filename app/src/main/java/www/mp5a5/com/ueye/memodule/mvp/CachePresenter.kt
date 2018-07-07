@@ -1,10 +1,11 @@
 package www.mp5a5.com.ueye.memodule.mvp
 
-import com.google.gson.Gson
 import www.mp5a5.com.ueye.base.mvp.BasePresenter
-import www.mp5a5.com.ueye.base.view.act.BaseActivity
+import www.mp5a5.com.ueye.dao.VideoEntityCache
 import www.mp5a5.com.ueye.dao.VideoEntityDaoUtil
 import www.mp5a5.com.ueye.net.entity.VideoBean
+import www.mp5a5.com.ueye.util.CollectionUtils
+import www.mp5a5.com.ueye.util.GsonUtils
 
 /**
  * @describe
@@ -13,17 +14,27 @@ import www.mp5a5.com.ueye.net.entity.VideoBean
  */
 class CachePresenter : BasePresenter<CacheContract.View>(), CacheContract.Presenter {
     
-    override fun requestDao(context: BaseActivity) {
-        
-        val list = VideoEntityDaoUtil.queryAll();
-        if (list!!.size > 0) {
+    
+    override fun deleteOneCache(entityCache: VideoEntityCache) {
+        VideoEntityDaoUtil.deleteData(entityCache )
+    }
+    
+    override fun deleteAllCache() {
+        VideoEntityDaoUtil.deleteAll()
+        v.setNullData()
+    }
+    
+    override fun requestDao() {
+        val list = VideoEntityDaoUtil.queryAll()
+        if (CollectionUtils.isNotEmpty(list)) {
             val mList = mutableListOf<VideoBean>()
             list!!.forEach {
-                val gson = Gson()
-                val videoBean = gson.fromJson(it.videoBean, VideoBean::class.java)
+                val videoBean = GsonUtils.json2Bean(it.videoBean, VideoBean::class.java)
                 mList.add(videoBean)
             }
             v.setData(mList)
         }
     }
+    
+    
 }

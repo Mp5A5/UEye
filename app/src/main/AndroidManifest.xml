@@ -34,7 +34,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Video" />
-        <activity android:name=".memodule.view.act.CacheActivity" />
+        <activity android:name=".memodule.view.act.WatchHistoryActivity" />
     </application>
 
 </manifest>

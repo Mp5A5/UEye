@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author ：king9999 on 2018/6/25 11：22
@@ -38,6 +39,8 @@ public class VideoDaoUtil {
    * @desc 查询所有数据
    */
   public static List<VideoEntityCache> queryAll() {
+
+    new TreeMap<String,String>();
     return DbManager.getInstance().getDaoSession()
         .getVideoEntityCacheDao()
         .queryBuilder()
@@ -66,5 +69,7 @@ public class VideoDaoUtil {
   public static void updateData(final VideoEntityCache entityCache) {
     DbManager.getInstance().getDaoSession().getVideoEntityCacheDao().update(entityCache);
   }
+
+
 
 }

@@ -1,7 +1,7 @@
 package www.mp5a5.com.ueye.memodule.mvp
 
 import www.mp5a5.com.ueye.base.mvp.BaseView
-import www.mp5a5.com.ueye.base.view.act.BaseActivity
+import www.mp5a5.com.ueye.dao.VideoEntityCache
 
 /**
  * @describe
@@ -16,12 +16,17 @@ interface CacheContract {
         
         fun <E> setData(list: List<E>)
         
+        fun setNullData()
+        
     }
     
     
     interface Presenter {
         
-        fun requestDao(context: BaseActivity)
+        fun requestDao()
         
+        fun deleteAllCache()
+        
+        fun deleteOneCache(entityCache: VideoEntityCache)
     }
 }

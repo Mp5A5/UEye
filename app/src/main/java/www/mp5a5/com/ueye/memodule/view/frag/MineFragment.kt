@@ -6,7 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_me.*
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
-import www.mp5a5.com.ueye.memodule.view.act.CacheActivity
+import www.mp5a5.com.ueye.memodule.view.act.WatchHistoryActivity
 
 /**
  * @describe
@@ -57,13 +57,13 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.tv_watch -> {
-                //gotoActivity<WatchActivity>()
+                gotoActivity<WatchHistoryActivity>()
             }
             R.id.tv_advise -> {
                 //gotoActivity<AdviseActivity>()
             }
             R.id.tv_save -> {
-                gotoActivity<CacheActivity>()
+                //gotoActivity<WatchActivity>()
             }
         }
     }

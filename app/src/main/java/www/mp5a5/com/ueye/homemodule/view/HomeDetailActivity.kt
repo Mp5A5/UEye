@@ -30,10 +30,7 @@ import www.mp5a5.com.ueye.dao.VideoEntityCache
 import www.mp5a5.com.ueye.dao.VideoEntityDaoUtil
 import www.mp5a5.com.ueye.net.entity.CustomMission
 import www.mp5a5.com.ueye.net.entity.VideoBean
-import www.mp5a5.com.ueye.util.CollectionUtils
-import www.mp5a5.com.ueye.util.GlideUtils
-import www.mp5a5.com.ueye.util.StatusBarUtils
-import www.mp5a5.com.ueye.util.VideoListener
+import www.mp5a5.com.ueye.util.*
 import zlc.season.rxdownload3.RxDownload
 import zlc.season.rxdownload3.helper.dispose
 import java.io.FileInputStream
@@ -94,6 +91,13 @@ class HomeDetailActivity : BaseActivity() {
     }
     
     private fun playVideo() {
+        //存入数据库------对应播放历史
+        val list = videoBean.id.let { VideoEntityDaoUtil.queryForId(it) }
+        LogUtils.e("--->" + list!!.size)
+        if (CollectionUtils.isEmpty(list)) {
+            VideoEntityDaoUtil.insertData(VideoEntityCache(videoBean.id.toLong(), videoBean.id, videoBean.playUrl, GsonUtils.toString(videoBean)))
+        }
+        
         val uri = intent.extras.getString("loaclFile")
         if (uri != null) {
             Log.e("uri", uri)
@@ -220,8 +224,8 @@ class HomeDetailActivity : BaseActivity() {
                     ToastUtils.show("开始下载！")
                     RxDownload.start(mission).doOnComplete {
                         //存入数据库
-                        val entityCache = VideoEntityCache(videoBean.id, videoBean.playUrl, videoBean.toString())
-                        videoBean.id.let { VideoEntityDaoUtil.insertData(entityCache) }
+                        //val entityCache = VideoEntityCache(videoBean.id, videoBean.playUrl, videoBean.toString())
+                        //videoBean.id.let { VideoEntityDaoUtil.insertData(entityCache) }
                     }.subscribe()
                 }, {
                     ToastUtils.show("添加任务失败！")
