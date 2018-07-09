@@ -1,6 +1,7 @@
 package www.mp5a5.com.ueye.homemodule.view
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -65,12 +66,13 @@ class HomeDetailActivity : BaseActivity() {
         videoBean = bundle.getParcelable<VideoBean>("home_data")
     }
     
+    @SuppressLint("SetTextI18n")
     override fun initView() {
         super.initView()
         LogUtils.e("-->" + videoBean.toString())
         StatusBarUtils.setColor(this, ContextCompat.getColor(thisActivity!!, R.color.white_50FFFFFF))
         val bgUrl = videoBean.blurred
-        bgUrl?.let { GlideUtils.displayHigh(this, mHomeDetailBottomBg, bgUrl) }
+        bgUrl?.let { GlideUtils.displayHigh(this, mHomeDetailBottomBg, it) }
         mHomeDetailVideoDescTv.text = videoBean.description
         mHomeDetailVideoDescTv.typeface = Typeface.createFromAsset(this.assets, "fonts/FZLanTingHeiS-DB1-GB-Regular.TTF")
         mHomeDetailTitleTv.text = videoBean.title
@@ -86,7 +88,7 @@ class HomeDetailActivity : BaseActivity() {
         mHomeDetailVideoTimeTv.text = "$category / $realMinute'$realSecond''"
         mHomeDetailVideoFavorTv.text = videoBean.collect.toString()
         mHomeDetailVideoShareTv.text = videoBean.share.toString()
-        mHomeDetailVideoReplyTv.text = videoBean.share.toString()
+        mHomeDetailVideoReplyTv.text = videoBean.reply.toString()
         playVideo()
     }
     

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        android:id="@+id/mVideoPlayerGsp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/black"
+        android:paddingTop="@dimen/size_24dp"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        >
+
+        <ImageView
+            android:id="@+id/mVideoPlayerBottomBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <include
+                    android:id="@+id/ll_bottom_set"
+                    layout="@layout/item_video_player_detail"
+                    />
+
+                <include
+                    android:layout_below="@+id/ll_bottom_set"
+                    layout="@layout/item_video_player_bottom_view"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    />
+
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

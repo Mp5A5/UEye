@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_20dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/mVideoPlayerFavorLl"
+        android:gravity="center"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_action_favorites_without_padding"
+            />
+
+        <TextView
+            android:id="@+id/mVideoPlayerFavorTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_5dp"
+            android:textColor="@color/white"
+            android:text="收藏"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:id="@+id/mVideoPlayerShareLl"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:src="@mipmap/ic_action_share_without_padding"
+            />
+
+        <TextView
+            android:id="@+id/mVideoPlayerShareTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_5dp"
+            android:textColor="@color/white"
+            android:text="分享"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mVideoPlayerReplyLl"
+        android:gravity="center"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:src="@mipmap/ic_action_reply_nopadding"
+            />
+
+        <TextView
+            android:id="@+id/mVideoPlayerReplyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_5dp"
+            android:textColor="@color/white"
+            android:text="评论"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mVideoPlayerDownloadLl"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:src="@mipmap/action_download_cut"
+            />
+
+        <TextView
+            android:id="@+id/mVideoPlayerDownloadTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_5dp"
+            android:textColor="@color/white"
+            android:text="缓存"
+            />
+    </LinearLayout>
+</merge>

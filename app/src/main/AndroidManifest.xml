@@ -28,13 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".base.view.act.HomeActivity" />
+
         <activity
             android:name=".homemodule.view.HomeDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Video" />
+
         <activity android:name=".memodule.view.act.WatchHistoryActivity" />
+
+        <activity
+            android:name=".homemodule.view.VideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Video" />
     </application>
 
 </manifest>

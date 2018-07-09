@@ -14,6 +14,7 @@ class ConstantUtil {
         const val HOME_BEAN = "home_bean"
         const val HOME_PLAY_URL = "home_play_url"
         const val HOME_COUNT = "home_count"
+        const val VIDEO_BEAN="video_bean"
     }
     
 }

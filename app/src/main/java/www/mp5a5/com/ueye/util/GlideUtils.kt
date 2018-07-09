@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import io.reactivex.annotations.Nullable
 import www.mp5a5.com.ueye.R
 
 /**
@@ -32,10 +33,8 @@ class GlideUtils {
                     .into(imageView)
         }
         
-        fun displayHigh(context: Context, imageView: ImageView?, url: String) {
-            if (imageView == null) {
-                throw IllegalArgumentException("argument error")
-            }
+        fun displayHigh(context: Context, @Nullable imageView: ImageView, url: String) {
+           
             
             val requestOptions = RequestOptions()
             requestOptions
