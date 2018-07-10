@@ -1,11 +1,14 @@
 package www.mp5a5.com.ueye.homemodule.view
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -33,6 +36,7 @@ class VideoPlayerActivity : BaseActivity() {
     private var mVideoBean: VideoBean? = null
     private lateinit var mOrientationUtils: OrientationUtils
     private var isPlay: Boolean = false
+    private var isPause: Boolean = false
     
     override fun initLayoutView(): View {
         return View.inflate(thisActivity!!, R.layout.activity_video_player, null)
@@ -51,7 +55,7 @@ class VideoPlayerActivity : BaseActivity() {
     override fun initView() {
         super.initView()
         StatusBarUtils.setColor(this, ContextCompat.getColor(thisActivity!!, R.color.white_50FFFFFF))
-        mVideoBean!!.playUrl.let { GlideUtils.displayHigh(thisActivity!!, mVideoPlayerBottomBg, it!!) }
+        mVideoBean!!.blurred.let { GlideUtils.displayHigh(thisActivity!!, mVideoPlayerBottomBg, it!!) }
         mVideoPlayerDescTv.text = mVideoBean!!.description!!
         mVideoPlayerDescTv.typeface = Typeface.createFromAsset(this.assets, "fonts/FZLanTingHeiS-DB1-GB-Regular.TTF")
         mVideoPlayerTitleTv.text = mVideoBean!!.title!!
@@ -95,11 +99,13 @@ class VideoPlayerActivity : BaseActivity() {
             e.onNext(mPath!!)
             
         }, BackpressureStrategy.BUFFER)
+                .subscribeOn(Schedulers.io())
                 .flatMap { t ->
                     val inputStream = FileInputStream(t)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     Flowable.just(bitmap)
-                }.subscribeOn(Schedulers.io())
+                }
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { b ->
                     imageView.setImageBitmap(b)
@@ -144,6 +150,59 @@ class VideoPlayerActivity : BaseActivity() {
             }
         })
         
-        mVideoPlayerGsp.setLockClickListener { _,lock -> mOrientationUtils.isEnable = !lock}
+        mVideoPlayerGsp.setLockClickListener { _, lock -> mOrientationUtils.isEnable = !lock }
+        
+        mVideoPlayerGsp.fullscreenButton.setOnClickListener { v ->
+            //直接横屏
+            mOrientationUtils.resolveByClick()
+            //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
+            mVideoPlayerGsp.startWindowFullscreen(thisActivity!!, true, true)
+        }
+        
+        mVideoPlayerGsp.backButton.setOnClickListener { onBackPressed() }
     }
+    
+    override fun onBackPressed() {
+        mOrientationUtils.backToProtVideo()
+        if (GSYVideoManager.backFromWindowFull(thisActivity!!)) {
+            return
+        }
+        super.onBackPressed()
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        mVideoPlayerGsp.currentPlayer.onVideoResume(false)
+        isPause = false
+    }
+    
+    override fun onPause() {
+        super.onPause()
+        mVideoPlayerGsp.currentPlayer.onVideoPause()
+        isPause = true
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
+        mOrientationUtils.releaseListener()
+    }
+    
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        //如果旋转了就全屏
+        if (isPlay && !isPause) {
+            if (newConfig!!.orientation == ActivityInfo.SCREEN_ORIENTATION_USER) {
+                if (!mVideoPlayerGsp.isIfCurrentIsFullscreen) {
+                    mVideoPlayerGsp.startWindowFullscreen(thisActivity!!, true, true)
+                }
+            } else {
+                if (mVideoPlayerGsp.isIfCurrentIsFullscreen) {
+                    GSYVideoManager.backFromWindowFull(this)
+                }
+                mOrientationUtils.isEnable = true
+            }
+        }
+    }
+    
 }

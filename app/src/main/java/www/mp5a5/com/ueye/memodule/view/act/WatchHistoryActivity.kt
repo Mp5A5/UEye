@@ -11,12 +11,13 @@ import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.mvp.BaseMvpActivity
 import www.mp5a5.com.ueye.dao.VideoEntityCache
-import www.mp5a5.com.ueye.homemodule.view.HomeDetailActivity
+import www.mp5a5.com.ueye.homemodule.view.VideoPlayerActivity
 import www.mp5a5.com.ueye.memodule.mvp.CacheContract
 import www.mp5a5.com.ueye.memodule.mvp.CachePresenter
 import www.mp5a5.com.ueye.memodule.view.adapter.HistoryAdapter
 import www.mp5a5.com.ueye.net.entity.VideoBean
 import www.mp5a5.com.ueye.util.CollectionUtils
+import www.mp5a5.com.ueye.util.ConstantUtil
 import www.mp5a5.com.ueye.util.GsonUtils
 
 /**
@@ -90,8 +91,8 @@ class WatchHistoryActivity : BaseMvpActivity<CachePresenter>(), CacheContract.Vi
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         val videoBean = adapter!!.data[position] as VideoBean
         val bundle = Bundle()
-        bundle.putParcelable("home_data", videoBean as Parcelable)
-        gotoActivity<HomeDetailActivity>(bundle, false)
+        bundle.putParcelable(ConstantUtil.VIDEO_BEAN, videoBean as Parcelable)
+        gotoActivity<VideoPlayerActivity>(bundle, false)
     }
     
     override fun onItemLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int): Boolean {
