@@ -1,8 +1,9 @@
-package www.mp5a5.com.ueye.memodule.mvp
+package www.mp5a5.com.ueye.module.me.mvp.presenter
 
 import www.mp5a5.com.ueye.base.mvp.BasePresenter
 import www.mp5a5.com.ueye.dao.VideoEntityCache
 import www.mp5a5.com.ueye.dao.VideoEntityDaoUtil
+import www.mp5a5.com.ueye.module.me.mvp.contract.CacheContract
 import www.mp5a5.com.ueye.net.entity.VideoBean
 import www.mp5a5.com.ueye.util.CollectionUtils
 import www.mp5a5.com.ueye.util.GsonUtils

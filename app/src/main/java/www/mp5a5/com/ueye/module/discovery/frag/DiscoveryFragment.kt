@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.base.view.rootui.frag
+package www.mp5a5.com.ueye.module.discovery.frag
 
 import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_a.*

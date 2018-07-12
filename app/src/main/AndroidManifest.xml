@@ -32,15 +32,15 @@
         <activity android:name=".base.view.act.HomeActivity" />
 
         <activity
-            android:name=".homemodule.view.HomeDetailActivity"
+            android:name=".module.home.act.HomeDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Video" />
 
-        <activity android:name=".memodule.view.act.WatchHistoryActivity" />
+        <activity android:name=".module.me.act.WatchHistoryActivity" />
 
         <activity
-            android:name=".homemodule.view.VideoPlayerActivity"
+            android:name=".module.home.act.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Video" />

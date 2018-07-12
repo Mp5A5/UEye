@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.memodule.view.adapter
+package www.mp5a5.com.ueye.module.me.adapter
 
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter

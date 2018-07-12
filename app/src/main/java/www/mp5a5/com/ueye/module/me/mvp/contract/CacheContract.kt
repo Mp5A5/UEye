@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.memodule.mvp
+package www.mp5a5.com.ueye.module.me.mvp.contract
 
 import www.mp5a5.com.ueye.base.mvp.BaseView
 import www.mp5a5.com.ueye.dao.VideoEntityCache

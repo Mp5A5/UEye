@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.memodule.view.adapter
+package www.mp5a5.com.ueye.module.me.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -30,6 +30,5 @@ class HistoryAdapter(layoutId: Int = R.layout.item_watch_history) : BaseQuickAda
         realMinute = if (minute!! < 10) "0" + minute else minute.toString()
         realSecond = if (second!! < 10) "0" + second else second.toString()
         helper.setText(R.id.tv_history_detail, "$category/$realMinute'$realSecond''/$date")
-        //helper.addOnLongClickListener(R.id.cv_history_container)
     }
 }

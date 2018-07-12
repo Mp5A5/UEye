@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.view
+package www.mp5a5.com.ueye.module.home.act
 
 import android.Manifest
 import android.annotation.SuppressLint

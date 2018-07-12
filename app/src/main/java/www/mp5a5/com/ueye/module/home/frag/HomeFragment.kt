@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.view
+package www.mp5a5.com.ueye.module.home.frag
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -14,9 +14,10 @@ import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.mvp.BaseMvpFragment
 import www.mp5a5.com.ueye.base.view.act.BaseActivity
-import www.mp5a5.com.ueye.homemodule.mvp.HomeFragContract
-import www.mp5a5.com.ueye.homemodule.mvp.HomeFragPresenter
-import www.mp5a5.com.ueye.homemodule.view.adapter.HomeAdapter
+import www.mp5a5.com.ueye.module.home.act.HomeDetailActivity
+import www.mp5a5.com.ueye.module.home.adapter.HomeAdapter
+import www.mp5a5.com.ueye.module.home.mvp.contract.HomeFragContract
+import www.mp5a5.com.ueye.module.home.mvp.presenter.HomeFragPresenter
 import www.mp5a5.com.ueye.net.entity.HomeBean
 import www.mp5a5.com.ueye.net.entity.VideoBean
 import www.mp5a5.com.ueye.util.DateUtil

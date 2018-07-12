@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.memodule.view.frag
+package www.mp5a5.com.ueye.module.me.frag
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_me.*
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
-import www.mp5a5.com.ueye.memodule.view.act.WatchHistoryActivity
+import www.mp5a5.com.ueye.module.me.act.WatchHistoryActivity
 
 /**
  * @describe

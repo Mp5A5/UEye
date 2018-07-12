@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.memodule.view.act
+package www.mp5a5.com.ueye.module.me.act
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -11,10 +11,10 @@ import www.mp5a5.com.kotlinmvp.util.ToastUtils
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.mvp.BaseMvpActivity
 import www.mp5a5.com.ueye.dao.VideoEntityCache
-import www.mp5a5.com.ueye.homemodule.view.VideoPlayerActivity
-import www.mp5a5.com.ueye.memodule.mvp.CacheContract
-import www.mp5a5.com.ueye.memodule.mvp.CachePresenter
-import www.mp5a5.com.ueye.memodule.view.adapter.HistoryAdapter
+import www.mp5a5.com.ueye.module.home.act.VideoPlayerActivity
+import www.mp5a5.com.ueye.module.me.mvp.contract.CacheContract
+import www.mp5a5.com.ueye.module.me.mvp.presenter.CachePresenter
+import www.mp5a5.com.ueye.module.me.adapter.HistoryAdapter
 import www.mp5a5.com.ueye.net.entity.VideoBean
 import www.mp5a5.com.ueye.util.CollectionUtils
 import www.mp5a5.com.ueye.util.ConstantUtil

@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.net
+package www.mp5a5.com.ueye.module.home.net
 
 import io.reactivex.Observable
 import retrofit2.http.GET

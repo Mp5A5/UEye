@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.mvp
+package www.mp5a5.com.ueye.module.home.mvp.contract
 
 import www.mp5a5.com.ueye.base.mvp.BaseView
 import www.mp5a5.com.ueye.base.view.act.BaseActivity

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_20dp"
+    android:orientation="horizontal"
     >
 
     <LinearLayout
@@ -108,4 +109,4 @@
             android:text="缓存"
             />
     </LinearLayout>
-</merge>
+</LinearLayout>

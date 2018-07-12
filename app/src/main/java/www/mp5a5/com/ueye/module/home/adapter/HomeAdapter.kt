@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.view.adapter
+package www.mp5a5.com.ueye.module.home.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

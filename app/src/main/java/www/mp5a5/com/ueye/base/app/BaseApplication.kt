@@ -2,6 +2,7 @@ package www.mp5a5.com.ueye.base.app
 
 import android.os.Environment
 import www.mp5a5.com.ueye.util.ConstantUtil
+import www.mp5a5.com.ueye.util.FileUtils
 import zlc.season.rxdownload3.core.DownloadConfig
 import zlc.season.rxdownload3.extension.ApkInstallExtension
 import zlc.season.rxdownload3.extension.ApkOpenExtension
@@ -22,7 +23,10 @@ class BaseApplication : BaseCommonApplication() {
     override fun onCreate() {
         super.onCreate()
         
-        val path: String = Environment.getExternalStorageDirectory().absoluteFile.toString() + "UEyeCache"
+        val path: String = Environment.getExternalStorageDirectory().absoluteFile.toString() + "/UEyeCache"
+        if (FileUtils.hasSdcard()) {
+            FileUtils.createFile(path)
+        }
         val builder = DownloadConfig.Builder.create(this)
                 //.setFps(20)                                      //设置更新频率
                 .setDebug(true)
@@ -32,7 +36,7 @@ class BaseApplication : BaseCommonApplication() {
                 //.setDbActor(CustomSqliteActor(this))       //自定义数据库
                 .enableService(true)                 //启用Service
                 .enableNotification(true)           //启用Notification
-                .setNotificationFactory(NotificationFactoryImpl()) 	    //自定义通知
+                .setNotificationFactory(NotificationFactoryImpl())        //自定义通知
                 .setOkHttpClientFacotry(OkHttpClientFactoryImpl())
                 .addExtension(ApkInstallExtension::class.java)
                 .addExtension(ApkOpenExtension::class.java)

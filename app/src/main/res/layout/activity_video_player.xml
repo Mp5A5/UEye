@@ -35,24 +35,17 @@
             android:fillViewport="true"
             >
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 >
 
-                <include
-                    android:id="@+id/ll_bottom_set"
-                    layout="@layout/item_video_player_detail"
-                    />
+                <include layout="@layout/item_video_player_detail" />
 
-                <include
-                    android:layout_below="@+id/ll_bottom_set"
-                    layout="@layout/item_video_player_bottom_view"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    />
+                <include layout="@layout/item_video_player_bottom_view" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
 

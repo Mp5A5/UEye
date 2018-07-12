@@ -1,4 +1,4 @@
-package www.mp5a5.com.ueye.homemodule.view
+package www.mp5a5.com.ueye.module.home.act
 
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
