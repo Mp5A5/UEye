@@ -7,6 +7,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_discovery.*
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
+import www.mp5a5.com.ueye.module.discovery.adapter.DiscoveryAdapter
 import www.mp5a5.com.ueye.util.DateUtil
 
 /**
@@ -17,6 +18,7 @@ import www.mp5a5.com.ueye.util.DateUtil
 class DiscoveryFragment : BaseFragment() {
     
     private lateinit var mContent: String
+    private lateinit var mDiscoveryAdapter: DiscoveryAdapter
     
     companion object {
         fun newInstance(): DiscoveryFragment {
@@ -51,6 +53,12 @@ class DiscoveryFragment : BaseFragment() {
     
     override fun initAdapter() {
         super.initAdapter()
+        mDiscoveryAdapter = DiscoveryAdapter()
+        rvDiscoveryRecyclerView.adapter = mDiscoveryAdapter
+    }
+    
+    override fun initNet() {
+        super.initNet()
         
     }
     
