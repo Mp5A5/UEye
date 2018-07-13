@@ -9,7 +9,6 @@
     android:background="?android:attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/size_5dp"
     android:focusable="true"
-    android:id="@+id/cv_history_container"
     >
 
     <RelativeLayout

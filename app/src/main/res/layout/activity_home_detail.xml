@@ -173,6 +173,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/mHomeDetailVideoDownloadLl"
                         android:layout_width="@dimen/size_0dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"

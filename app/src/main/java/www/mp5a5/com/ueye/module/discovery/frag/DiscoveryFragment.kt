@@ -1,9 +1,14 @@
 package www.mp5a5.com.ueye.module.discovery.frag
 
+import android.graphics.Typeface
 import android.os.Bundle
-import kotlinx.android.synthetic.main.fragment_a.*
+import android.support.v7.widget.GridLayoutManager
+import android.view.View
+import kotlinx.android.synthetic.main.fragment_discovery.*
 import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.view.frag.BaseFragment
+import www.mp5a5.com.ueye.util.DateUtil
+
 /**
  * @describe
  * @author ：king9999 on 2018/6/21 18：41
@@ -29,15 +34,24 @@ class DiscoveryFragment : BaseFragment() {
     }
     
     override fun initLayout(): Int {
-        return R.layout.fragment_a
+        return R.layout.fragment_discovery
     }
     
-    override fun needHeader(): Boolean {
-        return false
+    override fun setTitle(): String {
+        return DateUtil.getToday()
     }
     
     override fun initView() {
         super.initView()
-        textView.text = "探索发现"
+        leftBtn!!.visibility = View.GONE
+        midBtn!!.typeface = Typeface.createFromAsset(thisActivity!!.assets, "fonts/Lobster-1.4.otf")
+        rvDiscoveryRecyclerView.setHasFixedSize(true)
+        rvDiscoveryRecyclerView.layoutManager = GridLayoutManager(thisActivity!!, 2)
     }
+    
+    override fun initAdapter() {
+        super.initAdapter()
+        
+    }
+    
 }

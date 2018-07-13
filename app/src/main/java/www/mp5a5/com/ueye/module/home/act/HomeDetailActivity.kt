@@ -3,11 +3,9 @@ package www.mp5a5.com.ueye.module.home.act
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
-import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
@@ -180,39 +178,29 @@ class HomeDetailActivity : BaseActivity() {
     
     override fun initListener() {
         super.initListener()
-        mHomeDetailVideoDownloadIv.setOnClickListener {
+        mHomeDetailVideoDownloadLl.setOnClickListener {
             val idList = videoBean.id.let { it -> VideoEntityDaoUtil.queryForId(it) }
-            if (CollectionUtils.isEmpty(idList)) {
-                downloadVideoPermission()
-            } else {
-                ToastUtils.show("该视频已经缓存过了！")
-            }
-            
+            /* if (CollectionUtils.isEmpty(idList)) {
+                 downloadVideoPermission()
+             } else {
+                 ToastUtils.show("该视频已经缓存过了！")
+             }*/
+            downloadVideoPermission()
         }
     }
     
     //获取6.0权限
     private fun downloadVideoPermission() {
         
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(thisActivity!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                val permissions = RxPermissions(thisActivity!!)
-                permissions.requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS)
-                        .subscribe { permission ->
-                            if (permission.granted) {
-                                downloadVideo()
-                            } else if (permission.shouldShowRequestPermissionRationale) {
-                                ToastUtils.show("您拒绝了开启权限，这将影响你的视频下载！")
-                            } else {
-                                ToastUtils.show("您拒绝了开启权限，这将影响你的视频下载！")
-                            }
-                        }
-            } else {
-                downloadVideo()
-            }
-        }
-        
-        
+        val permissions = RxPermissions(thisActivity!!)
+        permissions.requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe { permission ->
+                    when {
+                        permission.granted -> downloadVideo()
+                        permission.shouldShowRequestPermissionRationale -> ToastUtils.show("您拒绝了开启权限")
+                        else -> ToastUtils.show("您拒绝了开启权限，这将影响你的视频下载！")
+                    }
+                }
     }
     
     //开始下载
