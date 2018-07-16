@@ -48,8 +48,8 @@ object RetrofitFactor {
         }
         
         val httpClient: OkHttpClient = OkHttpClient().newBuilder()
-                .readTimeout(ApiConfig.defaultTime.toLong(), TimeUnit.SECONDS)
-                .connectTimeout(ApiConfig.defaultTime.toLong(), TimeUnit.SECONDS)
+                .readTimeout(ApiConfig.defaultTime, TimeUnit.MILLISECONDS)
+                .connectTimeout(ApiConfig.defaultTime, TimeUnit.MILLISECONDS)
                 .addInterceptor(LoggingInterceptor.loggingInterceptor)
                 .addInterceptor(HttpHeaderInterceptor())
                 .addNetworkInterceptor(HttpCacheInterceptor())

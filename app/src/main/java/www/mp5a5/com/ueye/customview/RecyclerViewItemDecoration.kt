@@ -11,18 +11,29 @@ import android.view.View
  */
 class RecyclerViewItemDecoration() : RecyclerView.ItemDecoration() {
     
-    private var mSpaceValueMap: HashMap<SpaceType, Int>? = null
+    private var mSpaceValueMap: MutableMap<SpaceType, Int>? = null
     
-     constructor(spaceValueMap: HashMap<SpaceType, Int>) : this() {
+    constructor(spaceValueMap: MutableMap<SpaceType, Int>) : this() {
         this.mSpaceValueMap = spaceValueMap
     }
     
     override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
-        super.getItemOffsets(outRect, view, parent, state)
-        outRect!!.top = mSpaceValueMap!!.get(SpaceType.TOP)!!
-        outRect!!.bottom = mSpaceValueMap!!.get(SpaceType.BOTTOM)!!
-        outRect!!.left = mSpaceValueMap!!.get(SpaceType.LEFT)!!
-        outRect!!.right = mSpaceValueMap!!.get(SpaceType.RIGHT)!!
+        
+        if (mSpaceValueMap?.get(SpaceType.TOP) != null) {
+            outRect!!.top = mSpaceValueMap!![SpaceType.TOP]!!
+        }
+        
+        if (mSpaceValueMap?.get(SpaceType.BOTTOM) != null) {
+            outRect!!.bottom = mSpaceValueMap!![SpaceType.BOTTOM]!!
+        }
+        
+        if (mSpaceValueMap?.get(SpaceType.LEFT) != null) {
+            outRect!!.left = mSpaceValueMap!![SpaceType.LEFT]!!
+        }
+        
+        if (mSpaceValueMap?.get(SpaceType.RIGHT) != null) {
+            outRect!!.right = mSpaceValueMap!![SpaceType.RIGHT]!!
+        }
     }
     
     enum class SpaceType {

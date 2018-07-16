@@ -11,7 +11,7 @@ import www.mp5a5.com.ueye.util.SpUtils
 object ApiConfig {
     
     private var APP_TOKEN = "app_token"
-    private var DEFAULT_TIMEOUT = 5000;
+    private var DEFAULT_TIMEOUT: Long = 10000
     private var URL: String = ""
     
     var serverUrl: String
@@ -27,7 +27,7 @@ object ApiConfig {
         }
     
     
-    var defaultTime: Int
+    var defaultTime: Long
         get() = DEFAULT_TIMEOUT
         set(value) {
             DEFAULT_TIMEOUT = value
