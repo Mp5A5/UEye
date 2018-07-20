@@ -14,7 +14,7 @@ import www.mp5a5.com.ueye.util.GlideUtils
 class DiscoveryAdapter(layoutId: Int = R.layout.item_discovery) : BaseQuickAdapter<DiscoveryEntity, BaseViewHolder>(layoutId) {
     
     override fun convert(helper: BaseViewHolder?, item: DiscoveryEntity?) {
-        item!!.bgPicture!!.let { GlideUtils.display(mContext, helper!!.getView(R.id.iv_discovery_bg), it) }
+        item!!.bgPicture!!.let { GlideUtils.display(mContext!!, helper!!.getView(R.id.iv_discovery_bg), it) }
         helper!!.setText(R.id.tv_discovery_txt, item!!.name)
     }
     

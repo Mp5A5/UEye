@@ -139,8 +139,11 @@ abstract class BaseActivity : RxAppCompatActivity() {
         }
     }
     
-    inline fun <reified T : Activity> gotoActivity() {
+    inline fun <reified T : Activity> gotoActivity(isFinish: Boolean) {
         thisActivity!!.startActivity(Intent(thisActivity, T::class.java))
+        if (isFinish) {
+            thisActivity!!.finish()
+        }
     }
     
     

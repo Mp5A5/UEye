@@ -28,7 +28,7 @@ class HomeAdapter(layoutId: Int = R.layout.item_home) : BaseQuickAdapter<ItemLis
         val photo = item?.data?.cover?.feed
         val author = item?.data?.author
         
-        GlideUtils.display(mContext, helper!!.getView(R.id.iv_home_Photo), photo!!)
+        GlideUtils.display(mContext!!, helper!!.getView(R.id.iv_home_Photo), photo!!)
         helper.setText(R.id.tv_home_title, title)
         helper.setText(R.id.tv_home_detail, "发布于 $category / $realMinute:$realSecond")
         if (author != null) {

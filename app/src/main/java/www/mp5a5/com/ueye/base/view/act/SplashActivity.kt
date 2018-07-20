@@ -8,6 +8,7 @@ import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import kotlinx.android.synthetic.main.activity_splash.*
 import www.mp5a5.com.ueye.R
+import www.mp5a5.com.ueye.R.id.*
 
 /**
  * @describe
@@ -50,7 +51,7 @@ class SplashActivity : BaseActivity() {
             }
             
             override fun onAnimationEnd(animation: Animation?) {
-                gotoActivity<HomeActivity>()
+                gotoActivity<HomeActivity>(true)
             }
             
         })
