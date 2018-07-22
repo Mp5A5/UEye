@@ -6,7 +6,6 @@
     app:cardElevation="@dimen/size_5dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_margin="@dimen/size_2dp"
-    android:background="?android:attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/size_5dp"
     android:focusable="true"
     >

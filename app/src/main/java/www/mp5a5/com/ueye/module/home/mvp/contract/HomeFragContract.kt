@@ -16,10 +16,6 @@ interface HomeFragContract {
         fun showMsg(msg: String)
         
         fun loadMoreEnd(isEnd: Boolean)
-        /**
-         * 刷新
-         */
-        fun enableRefreshing()
         
         /**
          * 不刷新

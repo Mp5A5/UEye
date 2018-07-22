@@ -79,6 +79,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
     
     override fun initListener() {
         super.initListener()
+        mRefreshLayoutRl.isRefreshing = true
         mRefreshLayoutRl.setOnRefreshListener(this)
         mAdapter!!.setOnLoadMoreListener(this, mRecyclerView)
         mFloatingActionButtonFab.setOnClickListener { mRecyclerView.smoothScrollToPosition(0) }
@@ -121,10 +122,6 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
     
     override fun loadMoreEnd(isEnd: Boolean) {
         mAdapter!!.loadMoreEnd(isEnd)
-    }
-    
-    override fun enableRefreshing() {
-        mRefreshLayoutRl.isRefreshing = true
     }
     
     override fun unableRefreshing() {

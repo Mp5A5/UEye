@@ -11,6 +11,7 @@ import www.mp5a5.com.ueye.R
 import www.mp5a5.com.ueye.base.mvp.BaseMvpFragment
 import www.mp5a5.com.ueye.base.view.act.BaseActivity
 import www.mp5a5.com.ueye.customview.RecyclerViewItemDecoration
+import www.mp5a5.com.ueye.module.discovery.act.DiscoveryListActivity
 import www.mp5a5.com.ueye.module.discovery.adapter.DiscoveryAdapter
 import www.mp5a5.com.ueye.module.discovery.mvp.contract.DiscoveryContract
 import www.mp5a5.com.ueye.module.discovery.mvp.presenter.DiscoveryPresenter
@@ -25,7 +26,7 @@ import www.mp5a5.com.ueye.util.DateUtil
 class DiscoveryFragment : BaseMvpFragment<DiscoveryPresenter>(), DiscoveryContract.View, BaseQuickAdapter.OnItemClickListener {
     
     private lateinit var mContent: String
-    private lateinit var mDiscoveryAdapter: DiscoveryAdapter
+    private var mDiscoveryAdapter: DiscoveryAdapter? = null
     
     companion object {
         fun newInstance(): DiscoveryFragment {
@@ -77,7 +78,7 @@ class DiscoveryFragment : BaseMvpFragment<DiscoveryPresenter>(), DiscoveryContra
     
     override fun initListener() {
         super.initListener()
-        mDiscoveryAdapter.onItemClickListener = this
+        mDiscoveryAdapter!!.onItemClickListener = this
     }
     
     override fun showMsg(msg: String) {
@@ -85,11 +86,11 @@ class DiscoveryFragment : BaseMvpFragment<DiscoveryPresenter>(), DiscoveryContra
     }
     
     override fun <E> setNewData(list: List<E>) {
-        mDiscoveryAdapter.setNewData(list as MutableList<DiscoveryEntity>)
+        mDiscoveryAdapter!!.setNewData(list as MutableList<DiscoveryEntity>)
     }
     
     override fun setEmptyView() {
-        mDiscoveryAdapter.setNewData(null)
+        mDiscoveryAdapter!!.setNewData(null)
     }
     
     
@@ -101,6 +102,6 @@ class DiscoveryFragment : BaseMvpFragment<DiscoveryPresenter>(), DiscoveryContra
         val bean = adapter!!.data[position] as DiscoveryEntity
         val bundle = Bundle()
         bundle.putString("discovery_name", bean.name!!)
-        //gotoActivity<>(bundle, false)
+        gotoActivity<DiscoveryListActivity>(bundle, false)
     }
 }
