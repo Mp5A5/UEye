@@ -48,15 +48,15 @@ class HomeActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private fun setupViewPager(mViewpager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         mViewpager!!.offscreenPageLimit = 4
-        mViewpager.adapter = adapter
+        mViewpager!!.adapter = adapter
     }
     
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_home -> mViewpager.setCurrentItem(0)
-            R.id.item_find -> mViewpager.setCurrentItem(1)
-            R.id.item_hot -> mViewpager.setCurrentItem(2)
-            R.id.item_me -> mViewpager.setCurrentItem(3)
+            R.id.item_home -> mViewpager.currentItem = 0
+            R.id.item_find -> mViewpager.currentItem = 1
+            R.id.item_hot -> mViewpager.currentItem = 2
+            R.id.item_me -> mViewpager.currentItem = 3
         }
         return false
     }
@@ -68,13 +68,9 @@ class HomeActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     }
     
     override fun onPageSelected(position: Int) {
-        if (item != null) {
-            item!!.setChecked(false)
-        } else {
-            mBottomNavigation.menu.getItem(0).setChecked(false)
-        }
+        if (item != null) item!!.isChecked = false else mBottomNavigation.menu.getItem(0).isChecked = false
         item = mBottomNavigation.menu.getItem(position)
-        item!!.setChecked(false)
+        item!!.isChecked = false
     }
     
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

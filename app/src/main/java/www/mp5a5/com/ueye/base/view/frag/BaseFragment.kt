@@ -95,7 +95,7 @@ abstract class BaseFragment : RxFragment() {
         initNetWork()
     }
     
-    protected open fun needHeader(): Boolean {
+    open fun needHeader(): Boolean {
         return true
     }
     

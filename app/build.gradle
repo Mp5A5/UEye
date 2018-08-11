@@ -78,7 +78,7 @@ dependencies {
     //greenDao
     implementation 'org.greenrobot:greendao:' + rootProject.greenDaoVersion
     //RxDownload
-    compile 'zlc.season:rxdownload3:' + rootProject.rxDownloadVersion
+    implementation 'zlc.season:rxdownload3:' + rootProject.rxDownloadVersion
     //RxPermission
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:' + rootProject.rxPermissionVersion
 }

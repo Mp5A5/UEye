@@ -22,7 +22,8 @@ class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager)
     
     override fun getPageTitle(position: Int): CharSequence? {
         val fragment = RootUiFragmentFactory.createFragment(position)
-        return fragment.setTitle()
+        return if (fragment.needHeader()) fragment.setTitle() else null
+        
     }
     
     
