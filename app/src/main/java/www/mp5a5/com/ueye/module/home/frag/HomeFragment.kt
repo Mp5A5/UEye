@@ -183,6 +183,7 @@ class HomeFragment : BaseMvpFragment<HomeFragPresenter>(), HomeFragContract.View
             SpUtils.setString(ConstantUtil.HOME_PLAY_URL, playUrl!!)
             ObjectSaveUtils.saveObject(thisContext!!, "bean$count", videoBean)
         }*/
+        
         val bundle = Bundle()
         bundle.putParcelable("home_data", videoBean as Parcelable)
         gotoActivity<HomeDetailActivity>(bundle, false)
