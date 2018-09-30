@@ -85,7 +85,7 @@ class DiscoveryFragment : BaseMvpFragment<DiscoveryPresenter>(), DiscoveryContra
         ToastUtils.show(msg)
     }
     
-    override fun <E> setNewData(list: List<E>) {
+    override fun <E> setNewData(list: MutableList<E>) {
         mDiscoveryAdapter!!.setNewData(list as MutableList<DiscoveryEntity>)
     }
     

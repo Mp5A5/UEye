@@ -14,7 +14,7 @@ interface DiscoveryContract {
         
         fun showMsg(msg: String)
         
-        fun <E> setNewData(list: List<E>)
+        fun <E> setNewData(list: MutableList<E>)
         
         fun setEmptyView()
         
